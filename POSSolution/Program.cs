@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POSSolution.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,9 +14,11 @@ namespace POSSolution
         [STAThread]
         static void Main()
         {
+            new POSSolution.Controllers.LocalModels.UserController().Search("Salman");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
         }
     }
 }
