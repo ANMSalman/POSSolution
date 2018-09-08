@@ -65,22 +65,31 @@
     <Compile Include="Controllers\LocalModels\StaffController.cs" />
     <Compile Include="Controllers\LocalModels\UserController.cs" />
     <Compile Include="Models\Bill.cs">
-      <DependentUpon>LocalModels.tt</DependentUpon>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillItem.cs">
-      <DependentUpon>LocalModels.tt</DependentUpon>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillReturnItem.cs">
-      <DependentUpon>LocalModels.tt</DependentUpon>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cheque.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Collection.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Credit.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>LocalModels.tt</DependentUpon>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Expense.cs">
-      <DependentUpon>LocalModels.tt</DependentUpon>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Item.cs">
-      <DependentUpon>LocalModels.tt</DependentUpon>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LocalModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -97,23 +106,74 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Normal.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NormalItem.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NormalReturnItem.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OnlineModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OnlineModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OnlineModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PaymentBill.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PaymentBillItem.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PaymentBillReturnItem.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Purchase.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReturnBill.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReturnBillItem.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Staff.cs">
-      <DependentUpon>LocalModels.tt</DependentUpon>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>LocalModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+      <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Views\Background\BackgroundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Background\BackgroundForm.Designer.cs">
+      <DependentUpon>BackgroundForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\User\UserDetailsUC.Designer.cs">
+      <DependentUpon>UserDetailsUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -123,6 +183,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Background\BackgroundForm.resx">
+      <DependentUpon>BackgroundForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\User\UserDetailsUC.resx">
+      <DependentUpon>UserDetailsUC.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <EntityDeploy Include="Models\LocalModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -130,6 +196,13 @@
     </EntityDeploy>
     <None Include="Models\LocalModels.edmx.diagram">
       <DependentUpon>LocalModels.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Models\OnlineModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OnlineModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\OnlineModels.edmx.diagram">
+      <DependentUpon>OnlineModels.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -143,6 +216,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\Common\" />
     <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +233,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LocalModels.edmx</DependentUpon>
       <LastGenOutput>LocalModels.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OnlineModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineModels.edmx</DependentUpon>
+      <LastGenOutput>OnlineModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OnlineModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineModels.edmx</DependentUpon>
+      <LastGenOutput>OnlineModels.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

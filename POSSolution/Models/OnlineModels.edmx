@@ -1,0 +1,2141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OnlineDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="ReturnAmount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+          <Property Name="CashAmount" Type="float" Nullable="false" />
+          <Property Name="ChequeAmount" Type="float" Nullable="false" />
+          <Property Name="PaidAmount" Type="float" Nullable="false" />
+          <Property Name="BilledBy" Type="int" Nullable="false" />
+          <Property Name="ShownBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillId" Type="int" Nullable="false" />
+          <Property Name="QTY" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillReturnItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillId" Type="int" Nullable="false" />
+          <Property Name="QTY" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cheque">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddedDate" Type="date" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="PaymentId" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Cash" Type="float" Nullable="false" />
+          <Property Name="Cheque" Type="float" Nullable="false" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="ReturnBillId" Type="int" />
+        </EntityType>
+        <EntityType Name="Credit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="BillId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="NIC" Type="nvarchar" MaxLength="12" />
+          <Property Name="InitialBalance" Type="float" Nullable="false" />
+          <Property Name="AddedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="AddedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Normal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="ReturnAmount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+          <Property Name="CashAmount" Type="float" Nullable="false" />
+          <Property Name="ChequeAmount" Type="float" Nullable="false" />
+          <Property Name="PaidAmount" Type="float" Nullable="false" />
+          <Property Name="Balance" Type="float" Nullable="false" />
+          <Property Name="BilledBy" Type="int" Nullable="false" />
+          <Property Name="ShownBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NormalItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillId" Type="int" Nullable="false" />
+          <Property Name="QTY" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NormalReturnItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillId" Type="int" Nullable="false" />
+          <Property Name="QTY" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Cash" Type="float" Nullable="false" />
+          <Property Name="Cheque" Type="float" Nullable="false" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="PaymentBillId" Type="int" />
+          <Property Name="ReturnBillId" Type="int" />
+        </EntityType>
+        <EntityType Name="PaymentBill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="SupplierId" Type="int" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="ReturnAmount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+          <Property Name="BilledBy" Type="int" Nullable="false" />
+          <Property Name="ShownBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentBillItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentBillId" Type="int" Nullable="false" />
+          <Property Name="QTY" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentBillReturnItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentBillId" Type="int" Nullable="false" />
+          <Property Name="QTY" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReturnBill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="SupplierId" Type="int" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" />
+          <Property Name="BilledBy" Type="int" Nullable="false" />
+          <Property Name="ShownBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReturnBillItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReturnBillId" Type="int" Nullable="false" />
+          <Property Name="QTY" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="SubTotal" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="NetTotal" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="NIC" Type="nvarchar" MaxLength="12" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="nvarchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="70" />
+          <Property Name="AccountNo" Type="nvarchar" MaxLength="30" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="30" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="30" />
+          <Property Name="InitialBalance" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bill_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="ShownBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="BilledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillItem_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BillItem" Type="Self.BillItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillItem">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillReturnItem_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BillReturnItem" Type="Self.BillReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillReturnItem">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheque_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheque_Payment">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="PaymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_ReturnBill">
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="0..1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="ReturnBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credit_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Credit" Type="Self.Credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Credit">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credit_Normal">
+          <End Role="Normal" Type="Self.Normal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Credit" Type="Self.Credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Normal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Credit">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expense_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Normal_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Normal" Type="Self.Normal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Normal">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Normal_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Normal" Type="Self.Normal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Normal">
+              <PropertyRef Name="ShownBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Normal_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Normal" Type="Self.Normal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Normal">
+              <PropertyRef Name="BilledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalItem_Normal">
+          <End Role="Normal" Type="Self.Normal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NormalItem" Type="Self.NormalItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Normal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalItem">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalReturnItem_Normal">
+          <End Role="Normal" Type="Self.Normal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NormalReturnItem" Type="Self.NormalReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Normal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalReturnItem">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_PaymentBill">
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="PaymentBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_ReturnBill">
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="ReturnBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBill_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBill">
+              <PropertyRef Name="ShownBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBill_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBill">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBill_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBill">
+              <PropertyRef Name="BilledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBillItem_PaymentBill">
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBillItem" Type="Self.PaymentBillItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBillItem">
+              <PropertyRef Name="PaymentBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBillReturnItem_PaymentBill">
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBillReturnItem" Type="Self.PaymentBillReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBillReturnItem">
+              <PropertyRef Name="PaymentBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBill_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBill">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBill_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBill">
+              <PropertyRef Name="ShownBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBill_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBill">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBill_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBill">
+              <PropertyRef Name="BilledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBillItem_ReturnBill">
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReturnBillItem" Type="Self.ReturnBillItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBillItem">
+              <PropertyRef Name="ReturnBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineDatabaseModelStoreContainer">
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillItem" EntityType="Self.BillItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillReturnItem" EntityType="Self.BillReturnItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cheque" EntityType="Self.Cheque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Collection" EntityType="Self.Collection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credit" EntityType="Self.Credit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Normal" EntityType="Self.Normal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NormalItem" EntityType="Self.NormalItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NormalReturnItem" EntityType="Self.NormalReturnItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentBill" EntityType="Self.PaymentBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentBillItem" EntityType="Self.PaymentBillItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentBillReturnItem" EntityType="Self.PaymentBillReturnItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnBill" EntityType="Self.ReturnBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnBillItem" EntityType="Self.ReturnBillItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bill_Customer" Association="Self.FK_Bill_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Staff" Association="Self.FK_Bill_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillItem_Bill" Association="Self.FK_BillItem_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="BillItem" EntitySet="BillItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillReturnItem_Bill" Association="Self.FK_BillReturnItem_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="BillReturnItem" EntitySet="BillReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheque_Customer" Association="Self.FK_Cheque_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheque_Payment" Association="Self.FK_Cheque_Payment">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Customer" Association="Self.FK_Collection_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_ReturnBill" Association="Self.FK_Collection_ReturnBill">
+            <End Role="ReturnBill" EntitySet="ReturnBill" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credit_Customer" Association="Self.FK_Credit_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Credit" EntitySet="Credit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credit_Normal" Association="Self.FK_Credit_Normal">
+            <End Role="Normal" EntitySet="Normal" />
+            <End Role="Credit" EntitySet="Credit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expense_User" Association="Self.FK_Expense_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Normal_Customer" Association="Self.FK_Normal_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Normal" EntitySet="Normal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Normal_Staff" Association="Self.FK_Normal_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Normal" EntitySet="Normal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Normal_User" Association="Self.FK_Normal_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Normal" EntitySet="Normal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalItem_Normal" Association="Self.FK_NormalItem_Normal">
+            <End Role="Normal" EntitySet="Normal" />
+            <End Role="NormalItem" EntitySet="NormalItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalReturnItem_Normal" Association="Self.FK_NormalReturnItem_Normal">
+            <End Role="Normal" EntitySet="Normal" />
+            <End Role="NormalReturnItem" EntitySet="NormalReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_PaymentBill" Association="Self.FK_Payment_PaymentBill">
+            <End Role="PaymentBill" EntitySet="PaymentBill" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_ReturnBill" Association="Self.FK_Payment_ReturnBill">
+            <End Role="ReturnBill" EntitySet="ReturnBill" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Supplier" Association="Self.FK_Payment_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBill_Staff" Association="Self.FK_PaymentBill_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="PaymentBill" EntitySet="PaymentBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBill_Supplier" Association="Self.FK_PaymentBill_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="PaymentBill" EntitySet="PaymentBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBill_User" Association="Self.FK_PaymentBill_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PaymentBill" EntitySet="PaymentBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBillItem_PaymentBill" Association="Self.FK_PaymentBillItem_PaymentBill">
+            <End Role="PaymentBill" EntitySet="PaymentBill" />
+            <End Role="PaymentBillItem" EntitySet="PaymentBillItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBillReturnItem_PaymentBill" Association="Self.FK_PaymentBillReturnItem_PaymentBill">
+            <End Role="PaymentBill" EntitySet="PaymentBill" />
+            <End Role="PaymentBillReturnItem" EntitySet="PaymentBillReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Supplier" Association="Self.FK_Purchase_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBill_Customer" Association="Self.FK_ReturnBill_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ReturnBill" EntitySet="ReturnBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBill_Staff" Association="Self.FK_ReturnBill_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="ReturnBill" EntitySet="ReturnBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBill_Supplier" Association="Self.FK_ReturnBill_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="ReturnBill" EntitySet="ReturnBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBill_User" Association="Self.FK_ReturnBill_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ReturnBill" EntitySet="ReturnBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBillItem_ReturnBill" Association="Self.FK_ReturnBillItem_ReturnBill">
+            <End Role="ReturnBill" EntitySet="ReturnBill" />
+            <End Role="ReturnBillItem" EntitySet="ReturnBillItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlineDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="ReturnAmount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <Property Name="CashAmount" Type="Double" Nullable="false" />
+          <Property Name="ChequeAmount" Type="Double" Nullable="false" />
+          <Property Name="PaidAmount" Type="Double" Nullable="false" />
+          <Property Name="BilledBy" Type="Int32" Nullable="false" />
+          <Property Name="ShownBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Bill_Customer" FromRole="Bill" ToRole="Customer" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Bill_Staff" FromRole="Bill" ToRole="Staff" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Bill_User" FromRole="Bill" ToRole="User" />
+          <NavigationProperty Name="BillItems" Relationship="Self.FK_BillItem_Bill" FromRole="Bill" ToRole="BillItem" />
+          <NavigationProperty Name="BillReturnItems" Relationship="Self.FK_BillReturnItem_Bill" FromRole="Bill" ToRole="BillReturnItem" />
+        </EntityType>
+        <EntityType Name="BillItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillId" Type="Int32" Nullable="false" />
+          <Property Name="QTY" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillItem_Bill" FromRole="BillItem" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="BillReturnItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillId" Type="Int32" Nullable="false" />
+          <Property Name="QTY" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillReturnItem_Bill" FromRole="BillReturnItem" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Cheque">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentId" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Cheque_Customer" FromRole="Cheque" ToRole="Customer" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Cheque_Payment" FromRole="Cheque" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Type" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cash" Type="Double" Nullable="false" />
+          <Property Name="Cheque" Type="Double" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="ReturnBillId" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Collection_Customer" FromRole="Collection" ToRole="Customer" />
+          <NavigationProperty Name="ReturnBill" Relationship="Self.FK_Collection_ReturnBill" FromRole="Collection" ToRole="ReturnBill" />
+        </EntityType>
+        <EntityType Name="Credit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="BillId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Credit_Customer" FromRole="Credit" ToRole="Customer" />
+          <NavigationProperty Name="Normal" Relationship="Self.FK_Credit_Normal" FromRole="Credit" ToRole="Normal" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NIC" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="InitialBalance" Type="Double" Nullable="false" />
+          <Property Name="AddedBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_Customer" FromRole="Customer" ToRole="Bill" />
+          <NavigationProperty Name="Cheques" Relationship="Self.FK_Cheque_Customer" FromRole="Customer" ToRole="Cheque" />
+          <NavigationProperty Name="Collections" Relationship="Self.FK_Collection_Customer" FromRole="Customer" ToRole="Collection" />
+          <NavigationProperty Name="Credits" Relationship="Self.FK_Credit_Customer" FromRole="Customer" ToRole="Credit" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Customer" ToRole="User" />
+          <NavigationProperty Name="Normals" Relationship="Self.FK_Normal_Customer" FromRole="Customer" ToRole="Normal" />
+          <NavigationProperty Name="ReturnBills" Relationship="Self.FK_ReturnBill_Customer" FromRole="Customer" ToRole="ReturnBill" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="AddedBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Expense_User" FromRole="Expense" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Normal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="ReturnAmount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <Property Name="CashAmount" Type="Double" Nullable="false" />
+          <Property Name="ChequeAmount" Type="Double" Nullable="false" />
+          <Property Name="PaidAmount" Type="Double" Nullable="false" />
+          <Property Name="Balance" Type="Double" Nullable="false" />
+          <Property Name="BilledBy" Type="Int32" Nullable="false" />
+          <Property Name="ShownBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Credits" Relationship="Self.FK_Credit_Normal" FromRole="Normal" ToRole="Credit" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Normal_Customer" FromRole="Normal" ToRole="Customer" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Normal_Staff" FromRole="Normal" ToRole="Staff" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Normal_User" FromRole="Normal" ToRole="User" />
+          <NavigationProperty Name="NormalItems" Relationship="Self.FK_NormalItem_Normal" FromRole="Normal" ToRole="NormalItem" />
+          <NavigationProperty Name="NormalReturnItems" Relationship="Self.FK_NormalReturnItem_Normal" FromRole="Normal" ToRole="NormalReturnItem" />
+        </EntityType>
+        <EntityType Name="NormalItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillId" Type="Int32" Nullable="false" />
+          <Property Name="QTY" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Normal" Relationship="Self.FK_NormalItem_Normal" FromRole="NormalItem" ToRole="Normal" />
+        </EntityType>
+        <EntityType Name="NormalReturnItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillId" Type="Int32" Nullable="false" />
+          <Property Name="QTY" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Normal" Relationship="Self.FK_NormalReturnItem_Normal" FromRole="NormalReturnItem" ToRole="Normal" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Type" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cash" Type="Double" Nullable="false" />
+          <Property Name="Cheque" Type="Double" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="PaymentBillId" Type="Int32" />
+          <Property Name="ReturnBillId" Type="Int32" />
+          <NavigationProperty Name="Cheques" Relationship="Self.FK_Cheque_Payment" FromRole="Payment" ToRole="Cheque" />
+          <NavigationProperty Name="PaymentBill" Relationship="Self.FK_Payment_PaymentBill" FromRole="Payment" ToRole="PaymentBill" />
+          <NavigationProperty Name="ReturnBill" Relationship="Self.FK_Payment_ReturnBill" FromRole="Payment" ToRole="ReturnBill" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Payment_Supplier" FromRole="Payment" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="PaymentBill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SupplierId" Type="Int32" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="ReturnAmount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <Property Name="BilledBy" Type="Int32" Nullable="false" />
+          <Property Name="ShownBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_PaymentBill" FromRole="PaymentBill" ToRole="Payment" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_PaymentBill_Staff" FromRole="PaymentBill" ToRole="Staff" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_PaymentBill_Supplier" FromRole="PaymentBill" ToRole="Supplier" />
+          <NavigationProperty Name="User" Relationship="Self.FK_PaymentBill_User" FromRole="PaymentBill" ToRole="User" />
+          <NavigationProperty Name="PaymentBillItems" Relationship="Self.FK_PaymentBillItem_PaymentBill" FromRole="PaymentBill" ToRole="PaymentBillItem" />
+          <NavigationProperty Name="PaymentBillReturnItems" Relationship="Self.FK_PaymentBillReturnItem_PaymentBill" FromRole="PaymentBill" ToRole="PaymentBillReturnItem" />
+        </EntityType>
+        <EntityType Name="PaymentBillItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentBillId" Type="Int32" Nullable="false" />
+          <Property Name="QTY" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <NavigationProperty Name="PaymentBill" Relationship="Self.FK_PaymentBillItem_PaymentBill" FromRole="PaymentBillItem" ToRole="PaymentBill" />
+        </EntityType>
+        <EntityType Name="PaymentBillReturnItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentBillId" Type="Int32" Nullable="false" />
+          <Property Name="QTY" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <NavigationProperty Name="PaymentBill" Relationship="Self.FK_PaymentBillReturnItem_PaymentBill" FromRole="PaymentBillReturnItem" ToRole="PaymentBill" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Purchase_Supplier" FromRole="Purchase" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="ReturnBill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="SupplierId" Type="Int32" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" />
+          <Property Name="BilledBy" Type="Int32" Nullable="false" />
+          <Property Name="ShownBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Collections" Relationship="Self.FK_Collection_ReturnBill" FromRole="ReturnBill" ToRole="Collection" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_ReturnBill_Customer" FromRole="ReturnBill" ToRole="Customer" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_ReturnBill" FromRole="ReturnBill" ToRole="Payment" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_ReturnBill_Staff" FromRole="ReturnBill" ToRole="Staff" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_ReturnBill_Supplier" FromRole="ReturnBill" ToRole="Supplier" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ReturnBill_User" FromRole="ReturnBill" ToRole="User" />
+          <NavigationProperty Name="ReturnBillItems" Relationship="Self.FK_ReturnBillItem_ReturnBill" FromRole="ReturnBill" ToRole="ReturnBillItem" />
+        </EntityType>
+        <EntityType Name="ReturnBillItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReturnBillId" Type="Int32" Nullable="false" />
+          <Property Name="QTY" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="NetTotal" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ReturnBill" Relationship="Self.FK_ReturnBillItem_ReturnBill" FromRole="ReturnBillItem" ToRole="ReturnBill" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NIC" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_Staff" FromRole="Staff" ToRole="Bill" />
+          <NavigationProperty Name="Normals" Relationship="Self.FK_Normal_Staff" FromRole="Staff" ToRole="Normal" />
+          <NavigationProperty Name="PaymentBills" Relationship="Self.FK_PaymentBill_Staff" FromRole="Staff" ToRole="PaymentBill" />
+          <NavigationProperty Name="ReturnBills" Relationship="Self.FK_ReturnBill_Staff" FromRole="Staff" ToRole="ReturnBill" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AccountName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Branch" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="InitialBalance" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_Supplier" FromRole="Supplier" ToRole="Payment" />
+          <NavigationProperty Name="PaymentBills" Relationship="Self.FK_PaymentBill_Supplier" FromRole="Supplier" ToRole="PaymentBill" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchase_Supplier" FromRole="Supplier" ToRole="Purchase" />
+          <NavigationProperty Name="ReturnBills" Relationship="Self.FK_ReturnBill_Supplier" FromRole="Supplier" ToRole="ReturnBill" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_User" FromRole="User" ToRole="Bill" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_User" FromRole="User" ToRole="Customer" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK_Expense_User" FromRole="User" ToRole="Expense" />
+          <NavigationProperty Name="Normals" Relationship="Self.FK_Normal_User" FromRole="User" ToRole="Normal" />
+          <NavigationProperty Name="PaymentBills" Relationship="Self.FK_PaymentBill_User" FromRole="User" ToRole="PaymentBill" />
+          <NavigationProperty Name="ReturnBills" Relationship="Self.FK_ReturnBill_User" FromRole="User" ToRole="ReturnBill" />
+        </EntityType>
+        <Association Name="FK_Bill_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="ShownBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="BilledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillItem_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BillItem" Type="Self.BillItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillItem">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillReturnItem_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BillReturnItem" Type="Self.BillReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillReturnItem">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheque_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheque_Payment">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="PaymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_ReturnBill">
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="0..1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="ReturnBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credit_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Credit" Type="Self.Credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Credit">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credit_Normal">
+          <End Role="Normal" Type="Self.Normal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Credit" Type="Self.Credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Normal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Credit">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Normal_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Normal" Type="Self.Normal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Normal">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBill_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBill">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expense_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Normal_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Normal" Type="Self.Normal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Normal">
+              <PropertyRef Name="ShownBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Normal_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Normal" Type="Self.Normal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Normal">
+              <PropertyRef Name="BilledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalItem_Normal">
+          <End Role="Normal" Type="Self.Normal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NormalItem" Type="Self.NormalItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Normal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalItem">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NormalReturnItem_Normal">
+          <End Role="Normal" Type="Self.Normal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NormalReturnItem" Type="Self.NormalReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Normal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NormalReturnItem">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_PaymentBill">
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="PaymentBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_ReturnBill">
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="ReturnBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBill_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBill">
+              <PropertyRef Name="ShownBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBill_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBill">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBill_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBill">
+              <PropertyRef Name="BilledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBillItem_PaymentBill">
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBillItem" Type="Self.PaymentBillItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBillItem">
+              <PropertyRef Name="PaymentBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentBillReturnItem_PaymentBill">
+          <End Role="PaymentBill" Type="Self.PaymentBill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentBillReturnItem" Type="Self.PaymentBillReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentBillReturnItem">
+              <PropertyRef Name="PaymentBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBill_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBill">
+              <PropertyRef Name="ShownBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBill_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBill">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBill_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBill">
+              <PropertyRef Name="BilledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBillItem_ReturnBill">
+          <End Role="ReturnBill" Type="Self.ReturnBill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReturnBillItem" Type="Self.ReturnBillItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReturnBillItem">
+              <PropertyRef Name="ReturnBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="BillItems" EntityType="Self.BillItem" />
+          <EntitySet Name="BillReturnItems" EntityType="Self.BillReturnItem" />
+          <EntitySet Name="Cheques" EntityType="Self.Cheque" />
+          <EntitySet Name="Collections" EntityType="Self.Collection" />
+          <EntitySet Name="Credits" EntityType="Self.Credit" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Expenses" EntityType="Self.Expense" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Normals" EntityType="Self.Normal" />
+          <EntitySet Name="NormalItems" EntityType="Self.NormalItem" />
+          <EntitySet Name="NormalReturnItems" EntityType="Self.NormalReturnItem" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="PaymentBills" EntityType="Self.PaymentBill" />
+          <EntitySet Name="PaymentBillItems" EntityType="Self.PaymentBillItem" />
+          <EntitySet Name="PaymentBillReturnItems" EntityType="Self.PaymentBillReturnItem" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchase" />
+          <EntitySet Name="ReturnBills" EntityType="Self.ReturnBill" />
+          <EntitySet Name="ReturnBillItems" EntityType="Self.ReturnBillItem" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Bill_Customer" Association="Self.FK_Bill_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Staff" Association="Self.FK_Bill_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillItem_Bill" Association="Self.FK_BillItem_Bill">
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="BillItem" EntitySet="BillItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillReturnItem_Bill" Association="Self.FK_BillReturnItem_Bill">
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="BillReturnItem" EntitySet="BillReturnItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheque_Customer" Association="Self.FK_Cheque_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Cheque" EntitySet="Cheques" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheque_Payment" Association="Self.FK_Cheque_Payment">
+            <End Role="Payment" EntitySet="Payments" />
+            <End Role="Cheque" EntitySet="Cheques" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Customer" Association="Self.FK_Collection_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Collection" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_ReturnBill" Association="Self.FK_Collection_ReturnBill">
+            <End Role="ReturnBill" EntitySet="ReturnBills" />
+            <End Role="Collection" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credit_Customer" Association="Self.FK_Credit_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Credit" EntitySet="Credits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credit_Normal" Association="Self.FK_Credit_Normal">
+            <End Role="Normal" EntitySet="Normals" />
+            <End Role="Credit" EntitySet="Credits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Normal_Customer" Association="Self.FK_Normal_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Normal" EntitySet="Normals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBill_Customer" Association="Self.FK_ReturnBill_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ReturnBill" EntitySet="ReturnBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expense_User" Association="Self.FK_Expense_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Expense" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Normal_Staff" Association="Self.FK_Normal_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Normal" EntitySet="Normals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Normal_User" Association="Self.FK_Normal_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Normal" EntitySet="Normals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalItem_Normal" Association="Self.FK_NormalItem_Normal">
+            <End Role="Normal" EntitySet="Normals" />
+            <End Role="NormalItem" EntitySet="NormalItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NormalReturnItem_Normal" Association="Self.FK_NormalReturnItem_Normal">
+            <End Role="Normal" EntitySet="Normals" />
+            <End Role="NormalReturnItem" EntitySet="NormalReturnItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_PaymentBill" Association="Self.FK_Payment_PaymentBill">
+            <End Role="PaymentBill" EntitySet="PaymentBills" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_ReturnBill" Association="Self.FK_Payment_ReturnBill">
+            <End Role="ReturnBill" EntitySet="ReturnBills" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Supplier" Association="Self.FK_Payment_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBill_Staff" Association="Self.FK_PaymentBill_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="PaymentBill" EntitySet="PaymentBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBill_Supplier" Association="Self.FK_PaymentBill_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="PaymentBill" EntitySet="PaymentBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBill_User" Association="Self.FK_PaymentBill_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PaymentBill" EntitySet="PaymentBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBillItem_PaymentBill" Association="Self.FK_PaymentBillItem_PaymentBill">
+            <End Role="PaymentBill" EntitySet="PaymentBills" />
+            <End Role="PaymentBillItem" EntitySet="PaymentBillItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentBillReturnItem_PaymentBill" Association="Self.FK_PaymentBillReturnItem_PaymentBill">
+            <End Role="PaymentBill" EntitySet="PaymentBills" />
+            <End Role="PaymentBillReturnItem" EntitySet="PaymentBillReturnItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Supplier" Association="Self.FK_Purchase_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBill_Staff" Association="Self.FK_ReturnBill_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="ReturnBill" EntitySet="ReturnBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBill_Supplier" Association="Self.FK_ReturnBill_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="ReturnBill" EntitySet="ReturnBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBill_User" Association="Self.FK_ReturnBill_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ReturnBill" EntitySet="ReturnBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBillItem_ReturnBill" Association="Self.FK_ReturnBillItem_ReturnBill">
+            <End Role="ReturnBill" EntitySet="ReturnBills" />
+            <End Role="ReturnBillItem" EntitySet="ReturnBillItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlineDatabaseModelStoreContainer" CdmEntityContainer="OnlineDatabaseEntities">
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ReturnAmount" ColumnName="ReturnAmount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+                <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+                <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="BilledBy" ColumnName="BilledBy" />
+                <ScalarProperty Name="ShownBy" ColumnName="ShownBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillItems">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.BillItem">
+              <MappingFragment StoreEntitySet="BillItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BillId" ColumnName="BillId" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillReturnItems">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.BillReturnItem">
+              <MappingFragment StoreEntitySet="BillReturnItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BillId" ColumnName="BillId" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cheques">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Cheque">
+              <MappingFragment StoreEntitySet="Cheque">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Collections">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Collection">
+              <MappingFragment StoreEntitySet="Collection">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
+                <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="ReturnBillId" ColumnName="ReturnBillId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credits">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Credit">
+              <MappingFragment StoreEntitySet="Credit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BillId" ColumnName="BillId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="InitialBalance" ColumnName="InitialBalance" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenses">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Expense">
+              <MappingFragment StoreEntitySet="Expense">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Normals">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Normal">
+              <MappingFragment StoreEntitySet="Normal">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ReturnAmount" ColumnName="ReturnAmount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+                <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+                <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="BilledBy" ColumnName="BilledBy" />
+                <ScalarProperty Name="ShownBy" ColumnName="ShownBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NormalItems">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.NormalItem">
+              <MappingFragment StoreEntitySet="NormalItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BillId" ColumnName="BillId" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NormalReturnItems">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.NormalReturnItem">
+              <MappingFragment StoreEntitySet="NormalReturnItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BillId" ColumnName="BillId" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
+                <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="PaymentBillId" ColumnName="PaymentBillId" />
+                <ScalarProperty Name="ReturnBillId" ColumnName="ReturnBillId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentBills">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.PaymentBill">
+              <MappingFragment StoreEntitySet="PaymentBill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ReturnAmount" ColumnName="ReturnAmount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+                <ScalarProperty Name="BilledBy" ColumnName="BilledBy" />
+                <ScalarProperty Name="ShownBy" ColumnName="ShownBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentBillItems">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.PaymentBillItem">
+              <MappingFragment StoreEntitySet="PaymentBillItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PaymentBillId" ColumnName="PaymentBillId" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentBillReturnItems">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.PaymentBillReturnItem">
+              <MappingFragment StoreEntitySet="PaymentBillReturnItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PaymentBillId" ColumnName="PaymentBillId" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnBills">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.ReturnBill">
+              <MappingFragment StoreEntitySet="ReturnBill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+                <ScalarProperty Name="BilledBy" ColumnName="BilledBy" />
+                <ScalarProperty Name="ShownBy" ColumnName="ShownBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnBillItems">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.ReturnBillItem">
+              <MappingFragment StoreEntitySet="ReturnBillItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReturnBillId" ColumnName="ReturnBillId" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="InitialBalance" ColumnName="InitialBalance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="OnlineDatabaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

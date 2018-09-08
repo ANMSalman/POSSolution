@@ -80,7 +80,7 @@ namespace POSSolution.Controllers.LocalModels
         {
             try
             {
-                List<User> users = db.Users.Where(user => user.Name == input).ToList();
+                List<User> users = db.Users.Where(user => user.Name == input).IncludeFilter(user => user.Expenses.Where(expence => expence.Description == "Lunch")).ToList();
 
                 foreach (User user in users)
                 {

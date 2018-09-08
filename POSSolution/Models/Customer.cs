@@ -18,6 +18,11 @@ namespace POSSolution.Models
         public Customer()
         {
             this.Bills = new HashSet<Bill>();
+            this.Cheques = new HashSet<Cheque>();
+            this.Collections = new HashSet<Collection>();
+            this.Credits = new HashSet<Credit>();
+            this.Normals = new HashSet<Normal>();
+            this.ReturnBills = new HashSet<ReturnBill>();
         }
     
         public int Id { get; set; }
@@ -30,6 +35,16 @@ namespace POSSolution.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cheque> Cheques { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Collection> Collections { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Credit> Credits { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Normal> Normals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReturnBill> ReturnBills { get; set; }
     }
 }

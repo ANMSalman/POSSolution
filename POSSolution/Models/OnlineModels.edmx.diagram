@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="16adcc7add554d68997e5d609edf6c91" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Bill" Width="1.5" PointX="5.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.BillItem" Width="1.5" PointX="7.5" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.BillReturnItem" Width="1.5" PointX="7.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Cheque" Width="1.5" PointX="5.25" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Collection" Width="1.5" PointX="8.25" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Credit" Width="1.5" PointX="8.25" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Customer" Width="1.5" PointX="3" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Expense" Width="1.5" PointX="3" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Item" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Normal" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.NormalItem" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.NormalReturnItem" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Payment" Width="1.5" PointX="10.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.PaymentBill" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.PaymentBillItem" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.PaymentBillReturnItem" Width="1.5" PointX="5.25" PointY="34.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Purchase" Width="1.5" PointX="3" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.ReturnBill" Width="1.5" PointX="8.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.ReturnBillItem" Width="1.5" PointX="10.5" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Staff" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.Supplier" Width="1.5" PointX="0.75" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineDatabaseModel.User" Width="1.5" PointX="0.75" PointY="22.375" IsExpanded="true" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Bill_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Bill_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Bill_User" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_BillItem_Bill" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_BillReturnItem_Bill" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Cheque_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Cheque_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Collection_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Collection_ReturnBill" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Credit_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Credit_Normal" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Customer_User" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Normal_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_ReturnBill_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Expense_User" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Normal_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Normal_User" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_NormalItem_Normal" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_NormalReturnItem_Normal" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Payment_PaymentBill" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Payment_ReturnBill" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Payment_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_PaymentBill_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_PaymentBill_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_PaymentBill_User" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_PaymentBillItem_PaymentBill" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_PaymentBillReturnItem_PaymentBill" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_Purchase_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_ReturnBill_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_ReturnBill_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_ReturnBill_User" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineDatabaseModel.FK_ReturnBillItem_ReturnBill" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

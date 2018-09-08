@@ -12,35 +12,33 @@ namespace POSSolution.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Supplier
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Supplier()
         {
-            this.Bills = new HashSet<Bill>();
-            this.Customers = new HashSet<Customer>();
-            this.Expenses = new HashSet<Expense>();
-            this.Normals = new HashSet<Normal>();
+            this.Payments = new HashSet<Payment>();
             this.PaymentBills = new HashSet<PaymentBill>();
+            this.Purchases = new HashSet<Purchase>();
             this.ReturnBills = new HashSet<ReturnBill>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string Password { get; set; }
-        public string Status { get; set; }
+        public string name { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string AccountName { get; set; }
+        public string AccountNo { get; set; }
+        public string Bank { get; set; }
+        public string Branch { get; set; }
+        public double InitialBalance { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bill> Bills { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Expense> Expenses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Normal> Normals { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentBill> PaymentBills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purchase> Purchases { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReturnBill> ReturnBills { get; set; }
     }

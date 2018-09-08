@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using POSSolution.Views.Background;
 
 namespace POSSolution
 {
@@ -14,10 +15,9 @@ namespace POSSolution
         [STAThread]
         static void Main()
         {
-            new POSSolution.Controllers.LocalModels.UserController().Search("Salman");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new BackgroundForm());
 
         }
     }
