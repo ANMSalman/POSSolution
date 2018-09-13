@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>D:\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -40,10 +43,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -59,105 +64,90 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\LocalModels\CustomerController.cs" />
-    <Compile Include="Controllers\LocalModels\ExpenseController.cs" />
-    <Compile Include="Controllers\LocalModels\ItemController.cs" />
-    <Compile Include="Controllers\LocalModels\StaffController.cs" />
-    <Compile Include="Controllers\LocalModels\UserController.cs" />
-    <Compile Include="Models\Bill.cs">
+    <Compile Include="Controllers\OnlineModels\CustomerController.cs" />
+    <Compile Include="Controllers\OnlineModels\ExpenseController.cs" />
+    <Compile Include="Controllers\OnlineModels\ItemController.cs" />
+    <Compile Include="Controllers\OnlineModels\StaffController.cs" />
+    <Compile Include="Controllers\OnlineModels\UserController.cs" />
+    <Compile Include="Models\OnlineModels\Bill.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BillItem.cs">
+    <Compile Include="Models\OnlineModels\BillItem.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BillReturnItem.cs">
+    <Compile Include="Models\OnlineModels\BillReturnItem.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cheque.cs">
+    <Compile Include="Models\OnlineModels\Cheque.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Collection.cs">
+    <Compile Include="Models\OnlineModels\Collection.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Credit.cs">
+    <Compile Include="Models\OnlineModels\Credit.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Customer.cs">
+    <Compile Include="Models\OnlineModels\Customer.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Expense.cs">
+    <Compile Include="Models\OnlineModels\Expense.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Item.cs">
+    <Compile Include="Models\OnlineModels\Item.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LocalModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalModels.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LocalModels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LocalModels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalModels.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Normal.cs">
+    <Compile Include="Models\OnlineModels\Normal.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NormalItem.cs">
+    <Compile Include="Models\OnlineModels\NormalItem.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NormalReturnItem.cs">
+    <Compile Include="Models\OnlineModels\NormalReturnItem.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OnlineModels.Context.cs">
+    <Compile Include="Models\OnlineModels\OnlineModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineModels.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OnlineModels.cs">
+    <Compile Include="Models\OnlineModels\OnlineModels.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OnlineModels.Designer.cs">
+    <Compile Include="Models\OnlineModels\OnlineModels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineModels.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Payment.cs">
+    <Compile Include="Models\OnlineModels\Payment.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PaymentBill.cs">
+    <Compile Include="Models\OnlineModels\PaymentBill.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PaymentBillItem.cs">
+    <Compile Include="Models\OnlineModels\PaymentBillItem.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PaymentBillReturnItem.cs">
+    <Compile Include="Models\OnlineModels\PaymentBillReturnItem.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Purchase.cs">
+    <Compile Include="Models\OnlineModels\Purchase.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ReturnBill.cs">
+    <Compile Include="Models\OnlineModels\ReturnBill.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ReturnBillItem.cs">
+    <Compile Include="Models\OnlineModels\ReturnBillItem.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Staff.cs">
+    <Compile Include="Models\OnlineModels\Staff.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Supplier.cs">
+    <Compile Include="Models\OnlineModels\Supplier.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
+    <Compile Include="Models\OnlineModels\User.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -168,10 +158,40 @@
     <Compile Include="Views\Background\BackgroundForm.Designer.cs">
       <DependentUpon>BackgroundForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\User\UserDetailsUC.cs">
+    <Compile Include="Views\MessageBoxes\Confirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MessageBoxes\Confirmation.Designer.cs">
+      <DependentUpon>Confirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageBoxes\ShowMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MessageBoxes\ShowMessage.Designer.cs">
+      <DependentUpon>ShowMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\UserConrols\StaffDetailsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\User\UserDetailsUC.Designer.cs">
+    <Compile Include="Views\Staff\UserConrols\StaffDetailsUC.Designer.cs">
+      <DependentUpon>StaffDetailsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\User\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserConrols\UserDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\User\UserConrols\UserDetailsUC.Designer.cs">
       <DependentUpon>UserDetailsUC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -186,22 +206,30 @@
     <EmbeddedResource Include="Views\Background\BackgroundForm.resx">
       <DependentUpon>BackgroundForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\User\UserDetailsUC.resx">
+    <EmbeddedResource Include="Views\MessageBoxes\Confirmation.resx">
+      <DependentUpon>Confirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MessageBoxes\ShowMessage.resx">
+      <DependentUpon>ShowMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\UserConrols\StaffDetailsUC.resx">
+      <DependentUpon>StaffDetailsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\User\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\User\UserConrols\UserDetailsUC.resx">
       <DependentUpon>UserDetailsUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
-    <EntityDeploy Include="Models\LocalModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LocalModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Models\LocalModels.edmx.diagram">
-      <DependentUpon>LocalModels.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="Models\OnlineModels.edmx">
+    <EntityDeploy Include="Models\OnlineModels\OnlineModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\OnlineModels.edmx.diagram">
+    <None Include="Models\OnlineModels\OnlineModels.edmx.diagram">
       <DependentUpon>OnlineModels.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -224,22 +252,12 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\LocalModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LocalModels.edmx</DependentUpon>
-      <LastGenOutput>LocalModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\LocalModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LocalModels.edmx</DependentUpon>
-      <LastGenOutput>LocalModels.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlineModels.Context.tt">
+    <Content Include="Models\OnlineModels\OnlineModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineModels.edmx</DependentUpon>
       <LastGenOutput>OnlineModels.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\OnlineModels.tt">
+    <Content Include="Models\OnlineModels\OnlineModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineModels.edmx</DependentUpon>
       <LastGenOutput>OnlineModels.cs</LastGenOutput>

@@ -19,6 +19,7 @@ namespace POSSolution
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new BackgroundForm());
 
+            
         }
     }
 }

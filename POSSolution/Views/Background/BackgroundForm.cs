@@ -17,6 +17,8 @@ namespace POSSolution.Views.Background
             POSSolution.Views.User.UserDetailsUC uc = new User.UserDetailsUC();
             panel4.Controls.Add(uc);
             uc.Dock = DockStyle.Fill;
+
+            
         }
     }
 }
