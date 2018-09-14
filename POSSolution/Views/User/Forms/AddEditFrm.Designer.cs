@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEditFrm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.l3 = new System.Windows.Forms.Label();
             this.l2 = new System.Windows.Forms.Label();
             this.l1 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -44,7 +45,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.l3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -81,13 +81,28 @@
             this.panel3.Size = new System.Drawing.Size(520, 166);
             this.panel3.TabIndex = 2;
             // 
+            // l3
+            // 
+            this.l3.AutoSize = true;
+            this.l3.BackColor = System.Drawing.Color.Transparent;
+            this.l3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.l3.ForeColor = System.Drawing.Color.Red;
+            this.l3.Location = new System.Drawing.Point(123, 106);
+            this.l3.Name = "l3";
+            this.l3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.l3.Size = new System.Drawing.Size(59, 13);
+            this.l3.TabIndex = 14;
+            this.l3.Text = "*Required";
+            this.l3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.l3.Visible = false;
+            // 
             // l2
             // 
             this.l2.AutoSize = true;
             this.l2.BackColor = System.Drawing.Color.Transparent;
             this.l2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.l2.ForeColor = System.Drawing.Color.Red;
-            this.l2.Location = new System.Drawing.Point(442, 58);
+            this.l2.Location = new System.Drawing.Point(123, 58);
             this.l2.Name = "l2";
             this.l2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.l2.Size = new System.Drawing.Size(59, 13);
@@ -102,7 +117,7 @@
             this.l1.BackColor = System.Drawing.Color.Transparent;
             this.l1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.l1.ForeColor = System.Drawing.Color.Red;
-            this.l1.Location = new System.Drawing.Point(442, 9);
+            this.l1.Location = new System.Drawing.Point(123, 9);
             this.l1.Name = "l1";
             this.l1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.l1.Size = new System.Drawing.Size(59, 13);
@@ -239,21 +254,6 @@
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "CREATE NEW USER";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // l3
-            // 
-            this.l3.AutoSize = true;
-            this.l3.BackColor = System.Drawing.Color.Transparent;
-            this.l3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.l3.ForeColor = System.Drawing.Color.Red;
-            this.l3.Location = new System.Drawing.Point(442, 106);
-            this.l3.Name = "l3";
-            this.l3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.l3.Size = new System.Drawing.Size(59, 13);
-            this.l3.TabIndex = 14;
-            this.l3.Text = "*Required";
-            this.l3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.l3.Visible = false;
             // 
             // AddEditFrm
             // 

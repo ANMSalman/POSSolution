@@ -1,4 +1,4 @@
-﻿namespace POSSolution.Views.User
+﻿namespace POSSolution.Views.User.UserControllers
 {
     partial class UserDetailsUC
     {

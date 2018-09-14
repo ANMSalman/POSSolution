@@ -6,47 +6,46 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using POSSolution.Views.User.Forms;
+using POSSolution.Views.Staff.Forms;
 using POSSolution.Views.MessageBoxes;
 using POSSolution.Controllers.OnlineModels;
 
-namespace POSSolution.Views.User
+namespace POSSolution.Views.Staff.UserControllers
 {
-    public partial class UserDetailsUC : UserControl
+    public partial class StaffDetailsUC : UserControl
     {
-        UserController control = new UserController();
+        StaffController control = new StaffController();
 
-        public UserDetailsUC()
+        public StaffDetailsUC()
         {
             InitializeComponent();
             cmbSearchBy.SelectedIndex = 0;
-
         }
 
         private void Search()
         {
-            dgvUsers.Rows.Clear();
+            dgvStaffs.Rows.Clear();
 
-            IEnumerable<Models.OnlineModels.User> users = control.Search(cmbSearchBy.SelectedItem.ToString(), txtSearch.Text, ckDeleted.Checked);
+            IEnumerable<Models.OnlineModels.Staff> staffs = control.Search(cmbSearchBy.SelectedItem.ToString(), txtSearch.Text, ckDeleted.Checked);
 
-            if (users != null)
+            if (staffs != null)
             {
-                foreach (Models.OnlineModels.User user in users)
+                foreach (Models.OnlineModels.Staff staff in staffs)
                 {
-                    dgvUsers.Rows.Add(user.Id, user.Name, user.Type, user.Status);
+                    dgvStaffs.Rows.Add(staff.Id, staff.Name, staff.Phone, staff.NIC,staff.Address,staff.Status);
                 }
             }
         }
 
         private void GetAll()
         {
-            dgvUsers.Rows.Clear();
+            dgvStaffs.Rows.Clear();
 
-            IEnumerable<Models.OnlineModels.User> users = control.GetAll(ckDeleted.Checked);
+            IEnumerable<Models.OnlineModels.Staff> staffs = control.GetAll(ckDeleted.Checked);
 
-            foreach (Models.OnlineModels.User user in users)
+            foreach (Models.OnlineModels.Staff staff in staffs)
             {
-                dgvUsers.Rows.Add(user.Id, user.Name, user.Type, user.Status);
+                dgvStaffs.Rows.Add(staff.Id, staff.Name, staff.Phone, staff.NIC, staff.Address, staff.Status);
             }
         }
 
@@ -68,13 +67,13 @@ namespace POSSolution.Views.User
 
         private void EditRecord()
         {
-            if (dgvUsers.SelectedRows.Count > 0)
+            if (dgvStaffs.SelectedRows.Count > 0)
             {
-                if (dgvUsers.SelectedRows[0].Cells[0].Value != null)
+                if (dgvStaffs.SelectedRows[0].Cells[0].Value != null)
                 {
-                    Models.OnlineModels.User user = control.Find(int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString()));
+                    Models.OnlineModels.Staff staff = control.Find(int.Parse(dgvStaffs.SelectedRows[0].Cells[0].Value.ToString()));
 
-                    AddEditFrm frm = new AddEditFrm(user);
+                    AddEditFrm frm = new AddEditFrm(staff);
                     frm.ShowDialog();
 
                     RefreshDGV();
@@ -84,20 +83,20 @@ namespace POSSolution.Views.User
 
         private void DeleteRecord()
         {
-            if (dgvUsers.SelectedRows.Count > 0)
+            if (dgvStaffs.SelectedRows.Count > 0)
             {
-                if (dgvUsers.SelectedRows[0].Cells[0].Value != null && dgvUsers.SelectedRows[0].Cells[3].Value.ToString() != "DEACTIVE")
+                if (dgvStaffs.SelectedRows[0].Cells[0].Value != null && dgvStaffs.SelectedRows[0].Cells[3].Value.ToString() != "DEACTIVE")
                 {
-                    
+
                     DialogResult action = new Confirmation("Delete").ShowDialog();
 
                     if (action == DialogResult.Yes)
                     {
-                        bool result = control.Delete(int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString()));
+                        bool result = control.Delete(int.Parse(dgvStaffs.SelectedRows[0].Cells[0].Value.ToString()));
 
                         if (result)
                         {
-                            new ShowMessage("Success","Delete").ShowDialog();
+                            new ShowMessage("Success", "Delete").ShowDialog();
                             RefreshDGV();
                         }
                         else
@@ -106,23 +105,23 @@ namespace POSSolution.Views.User
                         }
                     }
 
-                    
+
                 }
             }
         }
 
         private void RestoreRecord()
         {
-            if (dgvUsers.SelectedRows.Count > 0)
+            if (dgvStaffs.SelectedRows.Count > 0)
             {
-                if (dgvUsers.SelectedRows[0].Cells[0].Value != null && dgvUsers.SelectedRows[0].Cells[3].Value.ToString() != "ACTIVE")
+                if (dgvStaffs.SelectedRows[0].Cells[0].Value != null && dgvStaffs.SelectedRows[0].Cells[3].Value.ToString() != "ACTIVE")
                 {
 
                     DialogResult action = new Confirmation("Restore").ShowDialog();
 
                     if (action == DialogResult.Yes)
                     {
-                        bool result = control.Restore(int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString()));
+                        bool result = control.Restore(int.Parse(dgvStaffs.SelectedRows[0].Cells[0].Value.ToString()));
 
                         if (result)
                         {
@@ -140,16 +139,6 @@ namespace POSSolution.Views.User
             }
         }
 
-
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            NewRecord();
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            EditRecord();
-        }
 
         private void cmbSearchBy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -172,7 +161,12 @@ namespace POSSolution.Views.User
             if (txtSearch.Text != "")
                 Search();
             else
-                dgvUsers.Rows.Clear();
+                dgvStaffs.Rows.Clear();
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            NewRecord();
         }
 
         private void btnAll_Click(object sender, EventArgs e)
@@ -186,6 +180,11 @@ namespace POSSolution.Views.User
             RefreshDGV();
         }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            EditRecord();
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DeleteRecord();
@@ -195,5 +194,6 @@ namespace POSSolution.Views.User
         {
             RestoreRecord();
         }
+
     }
 }

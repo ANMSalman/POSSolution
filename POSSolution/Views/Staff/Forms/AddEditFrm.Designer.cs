@@ -1,4 +1,4 @@
-﻿namespace POSSolution.Views.Saff.Forms
+﻿namespace POSSolution.Views.Staff.Forms
 {
     partial class AddEditFrm
     {
@@ -31,7 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEditFrm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.l4 = new System.Windows.Forms.Label();
+            this.l3 = new System.Windows.Forms.Label();
+            this.l2 = new System.Windows.Forms.Label();
+            this.l1 = new System.Windows.Forms.Label();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtNic = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -41,9 +48,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -65,10 +69,14 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
-            this.panel3.Controls.Add(this.textBox2);
+            this.panel3.Controls.Add(this.l4);
+            this.panel3.Controls.Add(this.l3);
+            this.panel3.Controls.Add(this.l2);
+            this.panel3.Controls.Add(this.l1);
+            this.panel3.Controls.Add(this.txtAddress);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.textBox1);
-            this.panel3.Controls.Add(this.txtPassword);
+            this.panel3.Controls.Add(this.txtPhone);
+            this.panel3.Controls.Add(this.txtNic);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.txtName);
@@ -79,13 +87,105 @@
             this.panel3.Size = new System.Drawing.Size(520, 237);
             this.panel3.TabIndex = 2;
             // 
-            // txtPassword
+            // l4
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPassword.Location = new System.Drawing.Point(126, 122);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(375, 29);
-            this.txtPassword.TabIndex = 11;
+            this.l4.AutoSize = true;
+            this.l4.BackColor = System.Drawing.Color.Transparent;
+            this.l4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.l4.ForeColor = System.Drawing.Color.Red;
+            this.l4.Location = new System.Drawing.Point(123, 154);
+            this.l4.Name = "l4";
+            this.l4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.l4.Size = new System.Drawing.Size(59, 13);
+            this.l4.TabIndex = 18;
+            this.l4.Text = "*Required";
+            this.l4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.l4.Visible = false;
+            // 
+            // l3
+            // 
+            this.l3.AutoSize = true;
+            this.l3.BackColor = System.Drawing.Color.Transparent;
+            this.l3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.l3.ForeColor = System.Drawing.Color.Red;
+            this.l3.Location = new System.Drawing.Point(123, 106);
+            this.l3.Name = "l3";
+            this.l3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.l3.Size = new System.Drawing.Size(59, 13);
+            this.l3.TabIndex = 17;
+            this.l3.Text = "*Required";
+            this.l3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.l3.Visible = false;
+            // 
+            // l2
+            // 
+            this.l2.AutoSize = true;
+            this.l2.BackColor = System.Drawing.Color.Transparent;
+            this.l2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.l2.ForeColor = System.Drawing.Color.Red;
+            this.l2.Location = new System.Drawing.Point(123, 58);
+            this.l2.Name = "l2";
+            this.l2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.l2.Size = new System.Drawing.Size(59, 13);
+            this.l2.TabIndex = 16;
+            this.l2.Text = "*Required";
+            this.l2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.l2.Visible = false;
+            // 
+            // l1
+            // 
+            this.l1.AutoSize = true;
+            this.l1.BackColor = System.Drawing.Color.Transparent;
+            this.l1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.l1.ForeColor = System.Drawing.Color.Red;
+            this.l1.Location = new System.Drawing.Point(123, 9);
+            this.l1.Name = "l1";
+            this.l1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.l1.Size = new System.Drawing.Size(59, 13);
+            this.l1.TabIndex = 15;
+            this.l1.Text = "*Required";
+            this.l1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.l1.Visible = false;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtAddress.Location = new System.Drawing.Point(126, 170);
+            this.txtAddress.MaxLength = 100;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(375, 29);
+            this.txtAddress.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label2.Location = new System.Drawing.Point(12, 173);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 21);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "ADDRESS";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPhone.Location = new System.Drawing.Point(126, 74);
+            this.txtPhone.MaxLength = 10;
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(375, 29);
+            this.txtPhone.TabIndex = 12;
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
+            // 
+            // txtNic
+            // 
+            this.txtNic.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtNic.Location = new System.Drawing.Point(126, 122);
+            this.txtNic.MaxLength = 12;
+            this.txtNic.Name = "txtNic";
+            this.txtNic.Size = new System.Drawing.Size(375, 29);
+            this.txtNic.TabIndex = 11;
             // 
             // label1
             // 
@@ -115,6 +215,7 @@
             // 
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtName.Location = new System.Drawing.Point(126, 25);
+            this.txtName.MaxLength = 40;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(375, 29);
             this.txtName.TabIndex = 7;
@@ -143,7 +244,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnSave.BackColor = System.Drawing.Color.Lime;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnSave.Location = new System.Drawing.Point(16, 6);
@@ -152,6 +253,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel2
             // 
@@ -189,34 +291,6 @@
             this.lblTitle.Text = "CREATE NEW STAFF";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.textBox1.Location = new System.Drawing.Point(126, 74);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(375, 29);
-            this.textBox1.TabIndex = 12;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.textBox2.Location = new System.Drawing.Point(126, 170);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(375, 29);
-            this.textBox2.TabIndex = 14;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label2.Location = new System.Drawing.Point(12, 173);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 21);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "ADDRESS";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // AddEditFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,13 +320,17 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtNic;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.Label l4;
+        private System.Windows.Forms.Label l3;
+        private System.Windows.Forms.Label l2;
+        private System.Windows.Forms.Label l1;
     }
 }

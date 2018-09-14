@@ -49,17 +49,21 @@ namespace POSSolution.Views.User.Forms
 
         private bool ValidateFields()
         {
-            if (txtName.Text == "" || txtPassword.Text == "")
+            if (txtName.Text != "" || txtPassword.Text != "")
+            {
+                l1.Visible = false;
+                l2.Visible = false;
+                l3.Visible = false;
+
+                return true;
+            }
+            else
             {
                 l1.Visible = true;
                 l2.Visible = true;
                 l3.Visible = true;
 
                 return false;
-            }
-            else
-            {
-                return true;
             }
         }
 

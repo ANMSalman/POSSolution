@@ -176,10 +176,10 @@
     <Compile Include="Views\Staff\Forms\AddEditFrm.Designer.cs">
       <DependentUpon>AddEditFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Staff\UserConrols\StaffDetailsUC.cs">
+    <Compile Include="Views\Staff\UserControllers\StaffDetailsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Staff\UserConrols\StaffDetailsUC.Designer.cs">
+    <Compile Include="Views\Staff\UserControllers\StaffDetailsUC.Designer.cs">
       <DependentUpon>StaffDetailsUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\User\Forms\AddEditFrm.cs">
@@ -188,10 +188,10 @@
     <Compile Include="Views\User\Forms\AddEditFrm.Designer.cs">
       <DependentUpon>AddEditFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\User\UserConrols\UserDetailsUC.cs">
+    <Compile Include="Views\User\UserControllers\UserDetailsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\User\UserConrols\UserDetailsUC.Designer.cs">
+    <Compile Include="Views\User\UserControllers\UserDetailsUC.Designer.cs">
       <DependentUpon>UserDetailsUC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -215,13 +215,13 @@
     <EmbeddedResource Include="Views\Staff\Forms\AddEditFrm.resx">
       <DependentUpon>AddEditFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Staff\UserConrols\StaffDetailsUC.resx">
+    <EmbeddedResource Include="Views\Staff\UserControllers\StaffDetailsUC.resx">
       <DependentUpon>StaffDetailsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\User\Forms\AddEditFrm.resx">
       <DependentUpon>AddEditFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\User\UserConrols\UserDetailsUC.resx">
+    <EmbeddedResource Include="Views\User\UserControllers\UserDetailsUC.resx">
       <DependentUpon>UserDetailsUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />

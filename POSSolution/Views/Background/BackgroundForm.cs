@@ -14,7 +14,7 @@ namespace POSSolution.Views.Background
         public BackgroundForm()
         {
             InitializeComponent();
-            POSSolution.Views.User.UserDetailsUC uc = new User.UserDetailsUC();
+            POSSolution.Views.Staff.UserControllers.StaffDetailsUC uc = new Staff.UserControllers.StaffDetailsUC();
             panel4.Controls.Add(uc);
             uc.Dock = DockStyle.Fill;
 
