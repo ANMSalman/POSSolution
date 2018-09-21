@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Common\Session.cs" />
     <Compile Include="Controllers\OnlineModels\CustomerController.cs" />
     <Compile Include="Controllers\OnlineModels\ExpenseController.cs" />
     <Compile Include="Controllers\OnlineModels\ItemController.cs" />
@@ -158,6 +159,30 @@
     <Compile Include="Views\Background\BackgroundForm.Designer.cs">
       <DependentUpon>BackgroundForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Customer\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\UserControllers\CustomerDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\UserControllers\CustomerDetailsUC.Designer.cs">
+      <DependentUpon>CustomerDetailsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Item\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Item\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Item\UserControllers\ItemDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Item\UserControllers\ItemDetailsUC.Designer.cs">
+      <DependentUpon>ItemDetailsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MessageBoxes\Confirmation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +231,18 @@
     <EmbeddedResource Include="Views\Background\BackgroundForm.resx">
       <DependentUpon>BackgroundForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Customer\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Customer\UserControllers\CustomerDetailsUC.resx">
+      <DependentUpon>CustomerDetailsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Item\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Item\UserControllers\ItemDetailsUC.resx">
+      <DependentUpon>ItemDetailsUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MessageBoxes\Confirmation.resx">
       <DependentUpon>Confirmation.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,7 +281,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Common\" />
     <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>

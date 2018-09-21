@@ -13,8 +13,10 @@ namespace POSSolution.Views.Background
     {
         public BackgroundForm()
         {
+            POSSolution.Controllers.Common.Session.Instance.Id = 100;
+
             InitializeComponent();
-            POSSolution.Views.Staff.UserControllers.StaffDetailsUC uc = new Staff.UserControllers.StaffDetailsUC();
+            POSSolution.Views.Customer.UserControllers.StaffDetailsUC uc = new Customer.UserControllers.StaffDetailsUC();
             panel4.Controls.Add(uc);
             uc.Dock = DockStyle.Fill;
 

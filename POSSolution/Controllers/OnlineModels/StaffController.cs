@@ -8,7 +8,6 @@ using System.Data.Entity;
 namespace POSSolution.Controllers.OnlineModels
 {
     class StaffController
-
     {
         OnlineDatabaseEntities db;
 

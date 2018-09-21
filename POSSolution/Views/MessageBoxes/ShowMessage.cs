@@ -17,15 +17,15 @@ namespace POSSolution.Views.MessageBoxes
 
             if (type == "Success")
             {
-                panel1.BackColor = Color.Lime;
-                btnOk.ForeColor = Color.Lime;
+                panel3.BackColor = Color.Lime;
+                btnOk.BackColor = Color.Lime;
                 lblTitle.Text = "SUCCESS";
                 lblMessage.Text = "New record created successfully.";
             }
             else
             {
-                panel1.BackColor = Color.Red;
-                btnOk.ForeColor = Color.Red;
+                panel3.BackColor = Color.Red;
+                btnOk.BackColor = Color.Red;
                 lblTitle.Text = "FAILED";
                 lblMessage.Text = "Creating new record failed.";
             }
@@ -37,8 +37,8 @@ namespace POSSolution.Views.MessageBoxes
 
             if(type=="Success")
             {
-                panel1.BackColor = Color.Lime;
-                btnOk.ForeColor = Color.Lime;
+                panel3.BackColor = Color.Lime;
+                btnOk.BackColor = Color.Lime;
                 lblTitle.Text = "SUCCESS";
                 if(action=="New")
                     lblMessage.Text = "New record created successfully.";
@@ -51,8 +51,8 @@ namespace POSSolution.Views.MessageBoxes
             }
             else
             {
-                panel1.BackColor = Color.Red;
-                btnOk.ForeColor = Color.Red;
+                panel3.BackColor = Color.Red;
+                btnOk.BackColor = Color.Red;
                 lblTitle.Text = "FAILED";
                 if (action == "New")
                     lblMessage.Text = "Creating new record failed.";
@@ -71,15 +71,15 @@ namespace POSSolution.Views.MessageBoxes
 
             if (type == "Success")
             {
-                panel1.BackColor = Color.Lime;
-                btnOk.ForeColor = Color.Lime;
+                panel3.BackColor = Color.Lime;
+                btnOk.BackColor = Color.Lime;
                 lblTitle.Text = title;
                 lblMessage.Text = message;
             }
             else
             {
-                panel1.BackColor = Color.Red;
-                btnOk.ForeColor = Color.Red;
+                panel3.BackColor = Color.Red;
+                btnOk.BackColor = Color.Red;
                 lblTitle.Text = title;
                 lblMessage.Text = message;
             }
