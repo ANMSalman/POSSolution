@@ -69,6 +69,7 @@
     <Compile Include="Controllers\OnlineModels\ExpenseController.cs" />
     <Compile Include="Controllers\OnlineModels\ItemController.cs" />
     <Compile Include="Controllers\OnlineModels\StaffController.cs" />
+    <Compile Include="Controllers\OnlineModels\SupplierController.cs" />
     <Compile Include="Controllers\OnlineModels\UserController.cs" />
     <Compile Include="Models\OnlineModels\Bill.cs">
       <DependentUpon>OnlineModels.tt</DependentUpon>
@@ -207,6 +208,18 @@
     <Compile Include="Views\Staff\UserControllers\StaffDetailsUC.Designer.cs">
       <DependentUpon>StaffDetailsUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Supplier\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Supplier\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Supplier\UserControllers\SupplierDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Supplier\UserControllers\SupplierDetailsUC.Designer.cs">
+      <DependentUpon>SupplierDetailsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\User\Forms\AddEditFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +267,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\UserControllers\StaffDetailsUC.resx">
       <DependentUpon>StaffDetailsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Supplier\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Supplier\UserControllers\SupplierDetailsUC.resx">
+      <DependentUpon>SupplierDetailsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\User\Forms\AddEditFrm.resx">
       <DependentUpon>AddEditFrm.cs</DependentUpon>

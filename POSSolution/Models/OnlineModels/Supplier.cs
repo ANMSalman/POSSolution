@@ -24,7 +24,6 @@ namespace POSSolution.Models.OnlineModels
         }
     
         public int Id { get; set; }
-        public string name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string AccountName { get; set; }
@@ -32,6 +31,7 @@ namespace POSSolution.Models.OnlineModels
         public string Bank { get; set; }
         public string Branch { get; set; }
         public double InitialBalance { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }

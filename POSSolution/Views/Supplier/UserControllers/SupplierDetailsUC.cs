@@ -6,17 +6,17 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using POSSolution.Views.Customer.Forms;
+using POSSolution.Views.Supplier.Forms;
 using POSSolution.Views.MessageBoxes;
 using POSSolution.Controllers.OnlineModels;
 
-namespace POSSolution.Views.Customer.UserControllers
+namespace POSSolution.Views.Supplier.UserControllers
 {
-    public partial class CustomerDetailsUC : UserControl
+    public partial class SupplierDetailsUC : UserControl
     {
-        CustomerController control = new CustomerController();
+        SupplierController control = new SupplierController();
 
-        public CustomerDetailsUC()
+        public SupplierDetailsUC()
         {
             InitializeComponent();
             cmbSearchBy.SelectedIndex = 0;
@@ -24,28 +24,28 @@ namespace POSSolution.Views.Customer.UserControllers
 
         private void Search()
         {
-            dgvCustomers.Rows.Clear();
+            dgvStaffs.Rows.Clear();
 
-            IEnumerable<Models.OnlineModels.Customer> customers = control.Search(cmbSearchBy.SelectedItem.ToString(), txtSearch.Text);
+            IEnumerable<Models.OnlineModels.Supplier> suppliers = control.Search(cmbSearchBy.SelectedItem.ToString(), txtSearch.Text);
 
-            if (customers != null)
+            if (suppliers != null)
             {
-                foreach (Models.OnlineModels.Customer customer in customers)
+                foreach (Models.OnlineModels.Supplier supplier in suppliers)
                 {
-                    dgvCustomers.Rows.Add(customer.Id, customer.Name, customer.Phone, customer.NIC,customer.Address,customer.User.Id+" : "+customer.User.Name);
+                    dgvStaffs.Rows.Add(supplier.Id, supplier.Name, supplier.Phone,supplier.Address,supplier.AccountNo,supplier.AccountName,supplier.Bank,supplier.Branch);
                 }
             }
         }
 
         private void GetAll()
         {
-            dgvCustomers.Rows.Clear();
+            dgvStaffs.Rows.Clear();
 
-            IEnumerable<Models.OnlineModels.Customer> customers = control.GetAll();
+            IEnumerable<Models.OnlineModels.Supplier> suppliers = control.GetAll();
 
-            foreach (Models.OnlineModels.Customer customer in customers)
+            foreach (Models.OnlineModels.Supplier supplier in suppliers)
             {
-                dgvCustomers.Rows.Add(customer.Id, customer.Name, customer.Phone, customer.NIC, customer.Address, customer.User.Id + " : " + customer.User.Name);
+                dgvStaffs.Rows.Add(supplier.Id, supplier.Name, supplier.Phone, supplier.Address, supplier.AccountNo, supplier.AccountName, supplier.Bank, supplier.Branch);
             }
         }
 
@@ -67,19 +67,22 @@ namespace POSSolution.Views.Customer.UserControllers
 
         private void EditRecord()
         {
-            if (dgvCustomers.SelectedRows.Count > 0)
+            if (dgvStaffs.SelectedRows.Count > 0)
             {
-                if (dgvCustomers.SelectedRows[0].Cells[0].Value != null)
+                if (dgvStaffs.SelectedRows[0].Cells[0].Value != null)
                 {
-                    Models.OnlineModels.Customer customer = control.Find(int.Parse(dgvCustomers.SelectedRows[0].Cells[0].Value.ToString()));
+                    Models.OnlineModels.Supplier supplier = control.Find(int.Parse(dgvStaffs.SelectedRows[0].Cells[0].Value.ToString()));
 
-                    AddEditFrm frm = new AddEditFrm(customer);
+                    AddEditFrm frm = new AddEditFrm(supplier);
                     frm.ShowDialog();
 
                     RefreshDGV();
                 }
             }
         }
+
+       
+
 
         private void cmbSearchBy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -102,7 +105,7 @@ namespace POSSolution.Views.Customer.UserControllers
             if (txtSearch.Text != "")
                 Search();
             else
-                dgvCustomers.Rows.Clear();
+                dgvStaffs.Rows.Clear();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -126,7 +129,7 @@ namespace POSSolution.Views.Customer.UserControllers
             EditRecord();
         }
 
-        
+       
 
     }
 }
