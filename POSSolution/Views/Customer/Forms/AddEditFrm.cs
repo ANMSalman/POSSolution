@@ -105,6 +105,8 @@ namespace POSSolution.Views.Customer.Forms
 
                 if (action == "New")
                 {
+                    customer.CreatedOn = DateTime.Today;
+
                     if (control.Add(customer))
                     {
                         new ShowMessage("Success", "SUCCESS", "Record created successfully.\nCustomer ID: " + customer.Id).ShowDialog();

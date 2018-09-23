@@ -99,6 +99,7 @@
           <Property Name="NIC" Type="nvarchar" MaxLength="12" />
           <Property Name="InitialBalance" Type="float" Nullable="false" />
           <Property Name="AddedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Expense">
           <Key>
@@ -280,6 +281,7 @@
           <Property Name="Bank" Type="nvarchar" MaxLength="30" />
           <Property Name="Branch" Type="nvarchar" MaxLength="30" />
           <Property Name="InitialBalance" Type="float" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -993,6 +995,7 @@
           <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Customer" ToRole="User" />
           <NavigationProperty Name="Normals" Relationship="Self.FK_Normal_Customer" FromRole="Customer" ToRole="Normal" />
           <NavigationProperty Name="ReturnBills" Relationship="Self.FK_ReturnBill_Customer" FromRole="Customer" ToRole="ReturnBill" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Expense">
           <Key>
@@ -1212,6 +1215,7 @@
           <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchase_Supplier" FromRole="Supplier" ToRole="Purchase" />
           <NavigationProperty Name="ReturnBills" Relationship="Self.FK_ReturnBill_Supplier" FromRole="Supplier" ToRole="ReturnBill" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1911,6 +1915,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="OnlineDatabaseModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -2104,6 +2109,7 @@
           <EntitySetMapping Name="Suppliers">
             <EntityTypeMapping TypeName="OnlineDatabaseModel.Supplier">
               <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

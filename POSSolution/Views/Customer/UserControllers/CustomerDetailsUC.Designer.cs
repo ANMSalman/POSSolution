@@ -61,6 +61,11 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnBills = new System.Windows.Forms.Button();
+            this.btnAccounts = new System.Windows.Forms.Button();
+            this.btnCollections = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBack)).BeginInit();
             this.panel4.SuspendLayout();
@@ -174,7 +179,8 @@
             this.Column3,
             this.Column4,
             this.Column5,
-            this.Column6});
+            this.Column6,
+            this.Column7});
             this.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCustomers.Location = new System.Drawing.Point(10, 10);
             this.dgvCustomers.Margin = new System.Windows.Forms.Padding(10);
@@ -286,6 +292,10 @@
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.flowLayoutPanel1.Controls.Add(this.btnRefresh);
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
+            this.flowLayoutPanel1.Controls.Add(this.panel5);
+            this.flowLayoutPanel1.Controls.Add(this.btnBills);
+            this.flowLayoutPanel1.Controls.Add(this.btnAccounts);
+            this.flowLayoutPanel1.Controls.Add(this.btnCollections);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 561);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -383,12 +393,61 @@
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
-            // StaffDetailsUC
+            // Column7
+            // 
+            this.Column7.HeaderText = "CREATED ON";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // panel5
+            // 
+            this.panel5.Location = new System.Drawing.Point(276, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(218, 45);
+            this.panel5.TabIndex = 10;
+            // 
+            // btnBills
+            // 
+            this.btnBills.BackColor = System.Drawing.SystemColors.Control;
+            this.btnBills.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBills.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBills.Location = new System.Drawing.Point(500, 3);
+            this.btnBills.Name = "btnBills";
+            this.btnBills.Size = new System.Drawing.Size(127, 46);
+            this.btnBills.TabIndex = 11;
+            this.btnBills.Text = "BILLS";
+            this.btnBills.UseVisualStyleBackColor = false;
+            // 
+            // btnAccounts
+            // 
+            this.btnAccounts.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAccounts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccounts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAccounts.Location = new System.Drawing.Point(633, 3);
+            this.btnAccounts.Name = "btnAccounts";
+            this.btnAccounts.Size = new System.Drawing.Size(127, 46);
+            this.btnAccounts.TabIndex = 12;
+            this.btnAccounts.Text = "ACCOUNTS";
+            this.btnAccounts.UseVisualStyleBackColor = false;
+            // 
+            // btnCollections
+            // 
+            this.btnCollections.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCollections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCollections.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnCollections.Location = new System.Drawing.Point(766, 3);
+            this.btnCollections.Name = "btnCollections";
+            this.btnCollections.Size = new System.Drawing.Size(127, 46);
+            this.btnCollections.TabIndex = 13;
+            this.btnCollections.Text = "COLLECTIONS";
+            this.btnCollections.UseVisualStyleBackColor = false;
+            // 
+            // CustomerDetailsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Name = "StaffDetailsUC";
+            this.Name = "CustomerDetailsUC";
             this.Size = new System.Drawing.Size(1024, 710);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbBack)).EndInit();
@@ -433,5 +492,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnBills;
+        private System.Windows.Forms.Button btnAccounts;
+        private System.Windows.Forms.Button btnCollections;
     }
 }

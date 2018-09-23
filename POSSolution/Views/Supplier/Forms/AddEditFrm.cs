@@ -102,6 +102,8 @@ namespace POSSolution.Views.Supplier.Forms
 
                 if (action == "New")
                 {
+                    supplier.CreatedOn = DateTime.Today;
+
                     if (control.Add(supplier))
                     {
                         new ShowMessage("Success", "SUCCESS", "Record created successfully.\nSupplier ID: " + supplier.Id).ShowDialog();

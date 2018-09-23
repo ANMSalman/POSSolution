@@ -80,8 +80,7 @@ namespace POSSolution.Controllers.OnlineModels
             {
                 db = new OnlineDatabaseEntities();
                 Item item = db.Items.Find(name);
-                item.Status = "DEACTIVE";
-                db.Entry(item).State = EntityState.Modified;
+                db.Items.Remove(item);
                 db.SaveChanges();
                 db.Dispose();
 
@@ -95,51 +94,22 @@ namespace POSSolution.Controllers.OnlineModels
                 return false;
             }
         }
-
-        /* Changes Status of the record to Active */
-        public Boolean Restore(string name)
-        {
-            try
-            {
-                db = new OnlineDatabaseEntities();
-                Item item = db.Items.Find(name);
-                item.Status = "ACTIVE";
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
-                db.Dispose();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                db.Dispose();
-
-                return false;
-            }
-        }
-
+        
         /* Searches records using item inputs */
-        public IEnumerable<Item> Search(string input, bool includeDeleted)
+        public IEnumerable<Item> Search(string input)
         {
             try
             {
                 db = new OnlineDatabaseEntities();
 
-                List<Item> users = new List<Item>();
+                List<Item> items = new List<Item>();
 
-                if (includeDeleted)
-                {
-                    users = db.Items.Where(item => item.Name.StartsWith(input)).ToList();
-                }
-                else
-                {
-                    users = db.Items.Where(item => item.Name.StartsWith(input) && item.Status == "ACTIVE").ToList();
-                }
+                items = db.Items.Where(item => item.Name.StartsWith(input)).ToList();
+
 
                 db.Dispose();
 
-                return users;
+                return items;
             }
             catch (Exception ex)
             {
@@ -151,26 +121,20 @@ namespace POSSolution.Controllers.OnlineModels
         }
 
         /* Gets All Records */
-        public IEnumerable<Item> GetAll(bool includeDeleted)
+        public IEnumerable<Item> GetAll()
         {
             try
             {
                 db = new OnlineDatabaseEntities();
 
-                List<Item> users = new List<Item>();
+                List<Item> items = new List<Item>();
 
-                if (includeDeleted)
-                {
-                    users = db.Items.ToList();
-                }
-                else
-                {
-                    users = db.Items.Where(item => item.Status == "ACTIVE").ToList();
-                }
+
+                items = db.Items.ToList();
 
                 db.Dispose();
 
-                return users;
+                return items;
             }
             catch (Exception ex)
             {

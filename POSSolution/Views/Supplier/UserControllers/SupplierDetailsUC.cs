@@ -32,7 +32,7 @@ namespace POSSolution.Views.Supplier.UserControllers
             {
                 foreach (Models.OnlineModels.Supplier supplier in suppliers)
                 {
-                    dgvStaffs.Rows.Add(supplier.Id, supplier.Name, supplier.Phone,supplier.Address,supplier.AccountNo,supplier.AccountName,supplier.Bank,supplier.Branch);
+                    dgvStaffs.Rows.Add(supplier.Id, supplier.Name, supplier.Phone,supplier.Address,supplier.AccountNo,supplier.AccountName,supplier.Bank,supplier.Branch,supplier.CreatedOn.ToString("yyyy-MM-dd"));
                 }
             }
         }
@@ -45,7 +45,7 @@ namespace POSSolution.Views.Supplier.UserControllers
 
             foreach (Models.OnlineModels.Supplier supplier in suppliers)
             {
-                dgvStaffs.Rows.Add(supplier.Id, supplier.Name, supplier.Phone, supplier.Address, supplier.AccountNo, supplier.AccountName, supplier.Bank, supplier.Branch);
+                dgvStaffs.Rows.Add(supplier.Id, supplier.Name, supplier.Phone, supplier.Address, supplier.AccountNo, supplier.AccountName, supplier.Bank, supplier.Branch,supplier.CreatedOn.ToString("yyyy-MM-dd"));
             }
         }
 

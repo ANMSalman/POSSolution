@@ -9,35 +9,35 @@ using System.Windows.Forms;
 using POSSolution.Views.MessageBoxes;
 using POSSolution.Controllers.OnlineModels;
 
-namespace POSSolution.Views.Item.Forms
+namespace POSSolution.Views.Expense.Forms
 {
     public partial class AddEditFrm : Form
     {
-        ItemController control = new ItemController();
-        Models.OnlineModels.Item item;
+        ExpenseController control = new ExpenseController();
+        Models.OnlineModels.Expense expense;
         string action;
 
         public AddEditFrm()
         {
             InitializeComponent();
-            
-            item = new Models.OnlineModels.Item();
+
+            expense = new Models.OnlineModels.Expense();
             action = "New";
-            cmbCategory.SelectedIndex = 0;
         }
 
-        public AddEditFrm(Models.OnlineModels.Item item)
+        public AddEditFrm(Models.OnlineModels.Expense expense)
         {
             InitializeComponent();
 
-            this.item = item;
+            this.expense = expense;
             action = "Edit";
 
-            lblTitle.Text = "EDIT ITEM";
+            lblTitle.Text = "EDIT USER";
             btnSave.BackColor = Color.Gold;
 
-            txtName.Text = item.Name;
-            cmbCategory.SelectedItem = item.Category;
+            dtpDate.Value = expense.Date;
+            txtDescription.Text = expense.Description;
+            txtAmount.Text = expense.Amount.ToString();
 
         }
 
@@ -48,32 +48,19 @@ namespace POSSolution.Views.Item.Forms
 
         private bool ValidateFields()
         {
-            if (txtName.Text != "")
+            if (txtAmount.Text != "" && txtDescription.Text != "" )
             {
                 l1.Visible = false;
                 l2.Visible = false;
+                l3.Visible = false;
 
-                if (action == "New")
-                {
-                    if (control.Find(txtName.Text) == null)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        new ShowMessage("Failed", "ERROR", "The item " + txtName.Text.ToUpper() + " already exists.").ShowDialog(); ;
-                        return false;
-                    }
-                }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
             else
             {
                 l1.Visible = true;
                 l2.Visible = true;
+                l3.Visible = true;
 
                 return false;
             }
@@ -83,13 +70,15 @@ namespace POSSolution.Views.Item.Forms
         {
             if(ValidateFields())
             {
-                item.Name = txtName.Text.ToUpper();
-                item.Category = cmbCategory.SelectedItem.ToString();
+                expense.Date = dtpDate.Value;
+                expense.Description = txtDescription.Text.ToUpper();
+                expense.Amount = double.Parse(txtAmount.Text);
 
                 if (action=="New")
                 {
-                    item.Status = "ACTIVE";
-                    if(control.Add(item))
+                    expense.AddedBy = Controllers.Common.Session.Instance.Id;
+
+                    if(control.Add(expense))
                     {
                         new ShowMessage("Success", "New").ShowDialog();
 
@@ -102,7 +91,7 @@ namespace POSSolution.Views.Item.Forms
                 }
                 else
                 {
-                    if (control.Update(item))
+                    if (control.Update(expense))
                     {
                         new ShowMessage("Success","Update").ShowDialog();
 
@@ -116,10 +105,24 @@ namespace POSSolution.Views.Item.Forms
             }
         }
 
+
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             Save();
             
+        }
+
+        private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

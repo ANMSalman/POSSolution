@@ -29,25 +29,22 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemDetailsUC));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dgvItems = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.ckDeleted = new System.Windows.Forms.CheckBox();
             this.btnAll = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.btnRestore = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnNew = new System.Windows.Forms.Button();
@@ -57,7 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -130,16 +126,15 @@
             this.dgvItems.ColumnHeadersHeight = 35;
             this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
-            this.Column3,
-            this.Column4});
+            this.Column3});
             this.dgvItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvItems.Location = new System.Drawing.Point(10, 10);
             this.dgvItems.Margin = new System.Windows.Forms.Padding(10);
             this.dgvItems.MultiSelect = false;
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.ReadOnly = true;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvItems.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvItems.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvItems.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.dgvItems.RowTemplate.Height = 35;
             this.dgvItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -150,7 +145,6 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.Control;
-            this.panel7.Controls.Add(this.ckDeleted);
             this.panel7.Controls.Add(this.btnAll);
             this.panel7.Controls.Add(this.txtSearch);
             this.panel7.Controls.Add(this.label4);
@@ -159,20 +153,6 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1024, 57);
             this.panel7.TabIndex = 0;
-            // 
-            // ckDeleted
-            // 
-            this.ckDeleted.AutoSize = true;
-            this.ckDeleted.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckDeleted.FlatAppearance.BorderSize = 2;
-            this.ckDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ckDeleted.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ckDeleted.Location = new System.Drawing.Point(365, 16);
-            this.ckDeleted.Name = "ckDeleted";
-            this.ckDeleted.Size = new System.Drawing.Size(165, 26);
-            this.ckDeleted.TabIndex = 7;
-            this.ckDeleted.Text = "INCLUDE DELETED";
-            this.ckDeleted.UseVisualStyleBackColor = true;
             // 
             // btnAll
             // 
@@ -192,7 +172,7 @@
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtSearch.Location = new System.Drawing.Point(120, 14);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(224, 29);
+            this.txtSearch.Size = new System.Drawing.Size(265, 29);
             this.txtSearch.TabIndex = 5;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
@@ -214,7 +194,6 @@
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.flowLayoutPanel1.Controls.Add(this.btnRefresh);
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
-            this.flowLayoutPanel1.Controls.Add(this.btnRestore);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 612);
@@ -249,25 +228,12 @@
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // btnRestore
-            // 
-            this.btnRestore.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRestore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnRestore.Location = new System.Drawing.Point(276, 3);
-            this.btnRestore.Name = "btnRestore";
-            this.btnRestore.Size = new System.Drawing.Size(127, 46);
-            this.btnRestore.TabIndex = 7;
-            this.btnRestore.Text = "RESTORE";
-            this.btnRestore.UseVisualStyleBackColor = false;
-            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
-            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDelete.Location = new System.Drawing.Point(409, 3);
+            this.btnDelete.Location = new System.Drawing.Point(276, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(127, 46);
             this.btnDelete.TabIndex = 3;
@@ -360,14 +326,6 @@
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
-            // Column4
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column4.HeaderText = "ITEM STATUS";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
             // ItemDetailsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,11 +369,8 @@
         private System.Windows.Forms.Button btnAll;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.DataGridView dgvItems;
-        private System.Windows.Forms.CheckBox ckDeleted;
-        private System.Windows.Forms.Button btnRestore;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

@@ -6,17 +6,17 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using POSSolution.Views.Item.Forms;
+using POSSolution.Views.Expense.Forms;
 using POSSolution.Views.MessageBoxes;
 using POSSolution.Controllers.OnlineModels;
 
-namespace POSSolution.Views.Item.UserControllers
+namespace POSSolution.Views.Expense.UserControllers
 {
-    public partial class ItemDetailsUC : UserControl
+    public partial class ExpenseDetailsUC : UserControl
     {
-        ItemController control = new ItemController();
+        ExpenseController control = new ExpenseController();
 
-        public ItemDetailsUC()
+        public ExpenseDetailsUC()
         {
             InitializeComponent();
 
@@ -24,37 +24,39 @@ namespace POSSolution.Views.Item.UserControllers
 
         private void Search()
         {
-            dgvItems.Rows.Clear();
+            dgvExpenses.Rows.Clear();
 
-            IEnumerable<Models.OnlineModels.Item> Items = control.Search(txtSearch.Text);
+            IEnumerable<Models.OnlineModels.Expense> expenses;
 
-            if (Items != null)
+            if (rbOn.Checked == true)
             {
-                foreach (Models.OnlineModels.Item Item in Items)
+               expenses = control.Search(dtpOn.Value.Date);
+            }
+            else
+            {
+                expenses = control.Search(dtpFrom.Value,dtpTo.Value);
+            }
+
+            if (expenses != null)
+            {
+                double total = 0;
+                foreach (Models.OnlineModels.Expense expense in expenses)
                 {
-                    dgvItems.Rows.Add(Item.Name, Item.Category);
+                    dgvExpenses.Rows.Add(expense.Id, expense.Date.ToString("dd-MM-yyyy"),expense.Description,expense.Amount.ToString("N2"), expense.User.Id+" : "+expense.User.Name);
+                    total += expense.Amount;
                 }
+                lblTotal.Text = "TOTAL: " + total.ToString("N2");
             }
-        }
-
-        private void GetAll()
-        {
-            dgvItems.Rows.Clear();
-
-            IEnumerable<Models.OnlineModels.Item> Items = control.GetAll();
-
-            foreach (Models.OnlineModels.Item Item in Items)
+            else
             {
-                dgvItems.Rows.Add(Item.Name, Item.Category);
+                lblTotal.Text = "TOTAL: 0";
             }
         }
+        
 
         private void RefreshDGV()
         {
-            if (txtSearch.Text != "")
-                Search();
-            else
-                GetAll();
+            Search();
         }
 
         private void NewRecord()
@@ -67,13 +69,13 @@ namespace POSSolution.Views.Item.UserControllers
 
         private void EditRecord()
         {
-            if (dgvItems.SelectedRows.Count > 0)
+            if (dgvExpenses.SelectedRows.Count > 0)
             {
-                if (dgvItems.SelectedRows[0].Cells[0].Value != null)
+                if (dgvExpenses.SelectedRows[0].Cells[0].Value != null)
                 {
-                    Models.OnlineModels.Item Item = control.Find(dgvItems.SelectedRows[0].Cells[0].Value.ToString());
+                    Models.OnlineModels.Expense expense = control.Find(int.Parse(dgvExpenses.SelectedRows[0].Cells[0].Value.ToString()));
 
-                    AddEditFrm frm = new AddEditFrm(Item);
+                    AddEditFrm frm = new AddEditFrm(expense);
                     frm.ShowDialog();
 
                     RefreshDGV();
@@ -83,16 +85,16 @@ namespace POSSolution.Views.Item.UserControllers
 
         private void DeleteRecord()
         {
-            if (dgvItems.SelectedRows.Count > 0)
+            if (dgvExpenses.SelectedRows.Count > 0)
             {
-                if (dgvItems.SelectedRows[0].Cells[0].Value != null)
+                if (dgvExpenses.SelectedRows[0].Cells[0].Value != null)
                 {
                     
                     DialogResult action = new Confirmation("Delete").ShowDialog();
 
                     if (action == DialogResult.Yes)
                     {
-                        bool result = control.Delete(dgvItems.SelectedRows[0].Cells[0].Value.ToString());
+                        bool result = control.Delete(int.Parse(dgvExpenses.SelectedRows[0].Cells[0].Value.ToString()));
 
                         if (result)
                         {
@@ -111,35 +113,11 @@ namespace POSSolution.Views.Item.UserControllers
         }
         
 
-        
-        private void cmbSearchBy_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtSearch.Text = "";
-        }
-
-        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            if (txtSearch.Text != "")
-                Search();
-            else
-                dgvItems.Rows.Clear();
-        }
-
         private void btnNew_Click(object sender, EventArgs e)
         {
             NewRecord();
         }
-
-        private void btnAll_Click(object sender, EventArgs e)
-        {
-            txtSearch.Text = "";
-            GetAll();
-        }
+        
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -155,6 +133,10 @@ namespace POSSolution.Views.Item.UserControllers
         {
             DeleteRecord();
         }
-        
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Search();
+        }
     }
 }

@@ -172,6 +172,18 @@
     <Compile Include="Views\Customer\UserControllers\CustomerDetailsUC.Designer.cs">
       <DependentUpon>CustomerDetailsUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Expense\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Expense\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Expense\UserControllers\ExpenseDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Expense\UserControllers\ExpenseDetailsUC.Designer.cs">
+      <DependentUpon>ExpenseDetailsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Item\Forms\AddEditFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +261,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Customer\UserControllers\CustomerDetailsUC.resx">
       <DependentUpon>CustomerDetailsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Expense\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Expense\UserControllers\ExpenseDetailsUC.resx">
+      <DependentUpon>ExpenseDetailsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Item\Forms\AddEditFrm.resx">
       <DependentUpon>AddEditFrm.cs</DependentUpon>

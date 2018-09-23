@@ -32,6 +32,7 @@ namespace POSSolution.Models.OnlineModels
         public string Branch { get; set; }
         public double InitialBalance { get; set; }
         public string Name { get; set; }
+        public System.DateTime CreatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
