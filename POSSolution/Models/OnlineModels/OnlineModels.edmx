@@ -63,7 +63,7 @@
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="150" />
           <Property Name="PaymentId" Type="int" />
-          <Property Name="Status" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="8" />
         </EntityType>
         <EntityType Name="Collection">
           <Key>
@@ -946,7 +946,7 @@
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="PaymentId" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Cheque_Customer" FromRole="Cheque" ToRole="Customer" />
           <NavigationProperty Name="Payment" Relationship="Self.FK_Cheque_Payment" FromRole="Cheque" ToRole="Payment" />
         </EntityType>

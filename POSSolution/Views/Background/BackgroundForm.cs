@@ -16,7 +16,7 @@ namespace POSSolution.Views.Background
             POSSolution.Controllers.Common.Session.Instance.Id = 100;
 
             InitializeComponent();
-            POSSolution.Views.Expense.UserControllers.ExpenseDetailsUC uc = new Expense.UserControllers.ExpenseDetailsUC();
+            POSSolution.Views.Cheque.UserControllers.ChequeDetailsUC uc = new Cheque.UserControllers.ChequeDetailsUC();
             panel4.Controls.Add(uc);
             uc.Dock = DockStyle.Fill;
 

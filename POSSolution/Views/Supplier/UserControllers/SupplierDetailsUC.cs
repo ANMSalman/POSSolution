@@ -24,7 +24,7 @@ namespace POSSolution.Views.Supplier.UserControllers
 
         private void Search()
         {
-            dgvStaffs.Rows.Clear();
+            dgvSupplier.Rows.Clear();
 
             IEnumerable<Models.OnlineModels.Supplier> suppliers = control.Search(cmbSearchBy.SelectedItem.ToString(), txtSearch.Text);
 
@@ -32,20 +32,20 @@ namespace POSSolution.Views.Supplier.UserControllers
             {
                 foreach (Models.OnlineModels.Supplier supplier in suppliers)
                 {
-                    dgvStaffs.Rows.Add(supplier.Id, supplier.Name, supplier.Phone,supplier.Address,supplier.AccountNo,supplier.AccountName,supplier.Bank,supplier.Branch,supplier.CreatedOn.ToString("yyyy-MM-dd"));
+                    dgvSupplier.Rows.Add(supplier.Id, supplier.Name, supplier.Phone,supplier.Address,supplier.AccountNo,supplier.AccountName,supplier.Bank,supplier.Branch,supplier.CreatedOn.ToString("yyyy-MM-dd"));
                 }
             }
         }
 
         private void GetAll()
         {
-            dgvStaffs.Rows.Clear();
+            dgvSupplier.Rows.Clear();
 
             IEnumerable<Models.OnlineModels.Supplier> suppliers = control.GetAll();
 
             foreach (Models.OnlineModels.Supplier supplier in suppliers)
             {
-                dgvStaffs.Rows.Add(supplier.Id, supplier.Name, supplier.Phone, supplier.Address, supplier.AccountNo, supplier.AccountName, supplier.Bank, supplier.Branch,supplier.CreatedOn.ToString("yyyy-MM-dd"));
+                dgvSupplier.Rows.Add(supplier.Id, supplier.Name, supplier.Phone, supplier.Address, supplier.AccountNo, supplier.AccountName, supplier.Bank, supplier.Branch,supplier.CreatedOn.ToString("yyyy-MM-dd"));
             }
         }
 
@@ -67,11 +67,11 @@ namespace POSSolution.Views.Supplier.UserControllers
 
         private void EditRecord()
         {
-            if (dgvStaffs.SelectedRows.Count > 0)
+            if (dgvSupplier.SelectedRows.Count > 0)
             {
-                if (dgvStaffs.SelectedRows[0].Cells[0].Value != null)
+                if (dgvSupplier.SelectedRows[0].Cells[0].Value != null)
                 {
-                    Models.OnlineModels.Supplier supplier = control.Find(int.Parse(dgvStaffs.SelectedRows[0].Cells[0].Value.ToString()));
+                    Models.OnlineModels.Supplier supplier = control.Find(int.Parse(dgvSupplier.SelectedRows[0].Cells[0].Value.ToString()));
 
                     AddEditFrm frm = new AddEditFrm(supplier);
                     frm.ShowDialog();
@@ -105,7 +105,7 @@ namespace POSSolution.Views.Supplier.UserControllers
             if (txtSearch.Text != "")
                 Search();
             else
-                dgvStaffs.Rows.Clear();
+                dgvSupplier.Rows.Clear();
         }
 
         private void btnNew_Click(object sender, EventArgs e)

@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Common\Session.cs" />
+    <Compile Include="Controllers\OnlineModels\ChequeController.cs" />
     <Compile Include="Controllers\OnlineModels\CustomerController.cs" />
     <Compile Include="Controllers\OnlineModels\ExpenseController.cs" />
     <Compile Include="Controllers\OnlineModels\ItemController.cs" />
@@ -159,6 +160,18 @@
     </Compile>
     <Compile Include="Views\Background\BackgroundForm.Designer.cs">
       <DependentUpon>BackgroundForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cheque\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Cheque\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cheque\UserControllers\ChequeDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Cheque\UserControllers\ChequeDetailsUC.Designer.cs">
+      <DependentUpon>ChequeDetailsUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Customer\Forms\AddEditFrm.cs">
       <SubType>Form</SubType>
@@ -255,6 +268,12 @@
     </Compile>
     <EmbeddedResource Include="Views\Background\BackgroundForm.resx">
       <DependentUpon>BackgroundForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cheque\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cheque\UserControllers\ChequeDetailsUC.resx">
+      <DependentUpon>ChequeDetailsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Customer\Forms\AddEditFrm.resx">
       <DependentUpon>AddEditFrm.cs</DependentUpon>

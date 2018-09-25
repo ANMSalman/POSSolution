@@ -17,7 +17,13 @@ namespace POSSolution.Views.MessageBoxes
 
             if (action == "Restore")
                 lblMessage.Text = "Restore selected record?";
+            else if (action == "MarkReturned")
+                lblMessage.Text = "Mark selected cheque as Returned?";
+            else if (action == "MarkPassed")
+                lblMessage.Text = "Mark selected cheque as Passed?";
 
         }
+
+        
     }
 }
