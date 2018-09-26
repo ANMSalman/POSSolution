@@ -31,15 +31,22 @@ namespace POSSolution.Views.Cheque.UserControllers
 
             cmbCustomer.SelectedIndex = 0;
             dgvCheques.Rows.Clear();
+            lblSummary.Text = "";
         }
 
         private void PaginateSearch()
         {
             /**pagination*/
 
+            int count = 0;
+            double sum = 0;
+
             if (cmbSearchBy.SelectedItem.ToString() == "ADDED DATE" || cmbSearchBy.SelectedItem.ToString() == "CHEQUE DATE")
             {
-                maxPages = (int)Math.Ceiling((double)control.GetCount(cmbSearchBy.SelectedItem.ToString(), dtpDate.Value.Date, ckReturned.Checked) / 50) - 1;    //-1 because pages are called using index not position
+                count = control.GetCount(cmbSearchBy.SelectedItem.ToString(), dtpDate.Value.Date, ckReturned.Checked);
+                sum = control.GetSum(cmbSearchBy.SelectedItem.ToString(), dtpDate.Value.Date, ckReturned.Checked);
+
+                maxPages = (int)Math.Ceiling((double) count/ 50) - 1;    //-1 because pages are called using index not position
             }
             else
             {
@@ -50,7 +57,10 @@ namespace POSSolution.Views.Cheque.UserControllers
                 else
                     searchText = txtSearch.Text;
 
-                maxPages = (int)Math.Ceiling((double)control.GetCount(cmbSearchBy.SelectedItem.ToString(), searchText, ckReturned.Checked) / 50) - 1;
+                count = control.GetCount(cmbSearchBy.SelectedItem.ToString(), searchText, ckReturned.Checked);
+                sum = control.GetSum(cmbSearchBy.SelectedItem.ToString(), searchText, ckReturned.Checked);
+
+                maxPages = (int)Math.Ceiling((double)count / 50) - 1;
             }
 
             if (maxPages > page)
@@ -62,6 +72,8 @@ namespace POSSolution.Views.Cheque.UserControllers
                 btnPrevious.Enabled = true;
             else
                 btnPrevious.Enabled = false;
+
+            lblSummary.Text = "CHEQUE COUNT: " + count + "   TOTAL SUM: " + sum.ToString("N2");
         }
 
         private void Search()
@@ -87,6 +99,13 @@ namespace POSSolution.Views.Cheque.UserControllers
                     searchText = cmbCustomer.SelectedItem.ToString().Split(' ').First();
                 else
                     searchText = txtSearch.Text;
+
+                Console.WriteLine(searchText);
+                Console.WriteLine(searchText);
+                Console.WriteLine(searchText);
+                Console.WriteLine(searchText);
+                Console.WriteLine(searchText);
+                Console.WriteLine(searchText);
 
                 cheques = control.Search(cmbSearchBy.SelectedItem.ToString(),
                     searchText,
@@ -124,8 +143,10 @@ namespace POSSolution.Views.Cheque.UserControllers
         private void PaginateAll()
         {
             /**pagination*/
+            int count = control.GetCount(ckReturned.Checked);
+            double sum= control.GetSum(ckReturned.Checked);
 
-            maxPages = (int)Math.Ceiling((double)control.GetCount(ckReturned.Checked) / 50) - 1;    //-1 because pages are called using index not position
+            maxPages = (int)Math.Ceiling((double)count / 50) - 1;    //-1 because pages are called using index not position
 
             if (maxPages > page)
                 btnNext.Enabled = true;
@@ -136,6 +157,8 @@ namespace POSSolution.Views.Cheque.UserControllers
                 btnPrevious.Enabled = true;
             else
                 btnPrevious.Enabled = false;
+
+            lblSummary.Text = "CHEQUE COUNT: " + count + "   TOTAL SUM: " + sum.ToString("N2");
         }
 
         private void GetAll()
@@ -178,7 +201,10 @@ namespace POSSolution.Views.Cheque.UserControllers
         private void RefreshDGV()
         {
             page = 0;
-            if (txtSearch.Text != "")
+            if (cmbSearchBy.SelectedItem.ToString() =="CUSTOMER" ||
+                cmbSearchBy.SelectedItem.ToString() == "ADDED DATE" ||
+                cmbSearchBy.SelectedItem.ToString() == "CHEQUE DATE" ||
+                txtSearch.Text != "")
                 Search();
             else
                 GetAll();
@@ -291,6 +317,9 @@ namespace POSSolution.Views.Cheque.UserControllers
                 cmbCustomer.Visible = false;
                 btnGo.Visible = false;
             }
+
+            dgvCheques.Rows.Clear();
+            lblSummary.Text = "";
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -348,10 +377,7 @@ namespace POSSolution.Views.Cheque.UserControllers
             EditRecord();
         }
 
-        private void cmbCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
+        
 
         private void btnNext_Click(object sender, EventArgs e)
         {

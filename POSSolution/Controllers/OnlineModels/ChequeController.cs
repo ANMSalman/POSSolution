@@ -143,7 +143,7 @@ namespace POSSolution.Controllers.OnlineModels
                         count = db.Cheques.Where(cheque => cheque.Amount.ToString() == input && cheque.Status == "RETURNED").Count();
                     else if (searchBy == "CHEQUE DATE")
                         count = db.Cheques.Where(cheque => cheque.Date.ToString("dd-MM-yyyy") == input && cheque.Status == "RETURNED").Count();
-                    else if (searchBy == "Customer")
+                    else if (searchBy == "CUSTOMER")
                         count = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input && cheque.Status == "RETURNED").Count();
                     else
                         count = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input) && cheque.Status == "RETURNED").Count();
@@ -164,7 +164,7 @@ namespace POSSolution.Controllers.OnlineModels
                         count = db.Cheques.Where(cheque => cheque.Amount.ToString() == input).Count();
                     else if (searchBy == "CHEQUE DATE")
                         count = db.Cheques.Where(cheque => cheque.Date.ToString("dd-MM-yyyy") == input).Count();
-                    else if (searchBy == "Customer")
+                    else if (searchBy == "CUSTOMER")
                         count = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input).Count();
                     else
                         count = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input)).Count();
@@ -173,6 +173,71 @@ namespace POSSolution.Controllers.OnlineModels
                 db.Dispose();
 
                 return count;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return 0;
+            }
+        }
+
+        /*Gets Sum of the Amount of records for the search with text*/
+        public double GetSum(string searchBy, string input, bool returned)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                double sum = 0;
+
+                if (returned)
+                {
+                    if (searchBy == "ID")
+                        sum = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input) && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else if (searchBy == "ADDED DATE")
+                        sum = db.Cheques.Where(cheque => cheque.AddedDate.ToString("dd-MM-yyyy") == input && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else if (searchBy == "NUMBER")
+                        sum = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input) && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else if (searchBy == "BANK")
+                        sum = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input) && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else if (searchBy == "BRANCH")
+                        sum = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input) && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else if (searchBy == "AMOUNT")
+                        sum = db.Cheques.Where(cheque => cheque.Amount.ToString() == input && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else if (searchBy == "CHEQUE DATE")
+                        sum = db.Cheques.Where(cheque => cheque.Date.ToString("dd-MM-yyyy") == input && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else if (searchBy == "CUSTOMER")
+                        sum = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else
+                        sum = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input) && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                }
+                else
+                {
+                    if (searchBy == "ID")
+                        sum = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input)).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "ADDED DATE")
+                        sum = db.Cheques.Where(cheque => cheque.AddedDate.ToString("dd-MM-yyyy") == input).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "NUMBER")
+                        sum = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input)).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "BANK")
+                        sum = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input)).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "BRANCH")
+                        sum = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input)).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "AMOUNT")
+                        sum = db.Cheques.Where(cheque => cheque.Amount.ToString() == input).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "CHEQUE DATE")
+                        sum = db.Cheques.Where(cheque => cheque.Date.ToString("dd-MM-yyyy") == input).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "CUSTOMER")
+                        sum = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input).Sum(cheque => cheque.Amount);
+                    else
+                        sum = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input)).Sum(cheque => cheque.Amount);
+                }
+
+                db.Dispose();
+
+                return sum;
             }
             catch (Exception ex)
             {
@@ -208,7 +273,7 @@ namespace POSSolution.Controllers.OnlineModels
                     cheques = db.Cheques.Where(cheque => cheque.Amount.ToString() == input).Include(cheque => cheque.Customer).ToList();
                 else if (searchBy == "CHEQUE DATE")
                     cheques = db.Cheques.Where(cheque => cheque.Date.ToString("dd-MM-yyyy") == input).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "Customer")
+                else if (searchBy == "CUSTOMER")
                     cheques = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input).Include(cheque => cheque.Customer).ToList();
                 else
                     cheques = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input)).Include(cheque => cheque.Customer).ToList();
@@ -265,6 +330,43 @@ namespace POSSolution.Controllers.OnlineModels
                 db.Dispose();
 
                 return count;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return 0;
+            }
+        }
+
+        /*Gets sum of the Amount of records for the search with dates*/
+        public double GetSum(string searchBy, DateTime input, bool returned)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                double sum = 0;
+
+                if (returned)
+                {
+                    if (searchBy == "ADDED DATE")
+                        sum = db.Cheques.Where(cheque => cheque.AddedDate == input && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                    else if (searchBy == "CHEQUE DATE")
+                        sum = db.Cheques.Where(cheque => cheque.Date == input && cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                }
+                else
+                {
+                    if (searchBy == "ADDED DATE")
+                        sum = db.Cheques.Where(cheque => cheque.AddedDate == input).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "CHEQUE DATE")
+                        sum = db.Cheques.Where(cheque => cheque.Date == input).Sum(cheque => cheque.Amount);
+                }
+
+                db.Dispose();
+
+                return sum;
             }
             catch (Exception ex)
             {
@@ -332,6 +434,33 @@ namespace POSSolution.Controllers.OnlineModels
                 db.Dispose();
 
                 return count;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return 0;
+            }
+        }
+
+        /*Gets sum of the Amount of records for all records*/
+        public double GetSum(bool returned)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                double sum = 0;
+
+                if (returned)
+                    sum = db.Cheques.Where(cheque => cheque.Status == "RETURNED").Sum(cheque => cheque.Amount);
+                else
+                    sum = db.Cheques.Sum(cheque=> cheque.Amount);
+
+                db.Dispose();
+
+                return sum;
             }
             catch (Exception ex)
             {

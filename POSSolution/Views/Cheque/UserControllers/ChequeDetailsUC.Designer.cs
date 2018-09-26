@@ -39,29 +39,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dgvCheques = new System.Windows.Forms.DataGridView();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.cmbCustomer = new System.Windows.Forms.ComboBox();
-            this.ckAscending = new System.Windows.Forms.CheckBox();
-            this.ckReturned = new System.Windows.Forms.CheckBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbSearchBy = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnAll = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnCustomer = new System.Windows.Forms.Button();
-            this.btnPayment = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnReturn = new System.Windows.Forms.Button();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,19 +50,43 @@
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnPass = new System.Windows.Forms.Button();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.btnGo = new System.Windows.Forms.Button();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.cmbCustomer = new System.Windows.Forms.ComboBox();
+            this.ckAscending = new System.Windows.Forms.CheckBox();
+            this.ckReturned = new System.Windows.Forms.CheckBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbSearchBy = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnAll = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnPass = new System.Windows.Forms.Button();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnCustomer = new System.Windows.Forms.Button();
+            this.btnPayment = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSummary = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBack)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCheques)).BeginInit();
+            this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -203,8 +204,6 @@
             this.dgvCheques.Name = "dgvCheques";
             this.dgvCheques.ReadOnly = true;
             dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Empty;
             this.dgvCheques.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvCheques.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.dgvCheques.RowTemplate.Height = 35;
@@ -212,6 +211,110 @@
             this.dgvCheques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCheques.Size = new System.Drawing.Size(1004, 440);
             this.dgvCheques.TabIndex = 2;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "CHEQUE ID";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "ADDED DATE";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "NUMBER";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "BANK";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "BRANCH";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "AMOUNT";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "CHEQUE DATE";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "CUSTOMER";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "DESCRIPTION";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "PAYMENT ID";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "STATUS";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.Control;
+            this.panel9.Controls.Add(this.lblSummary);
+            this.panel9.Controls.Add(this.btnPrevious);
+            this.panel9.Controls.Add(this.btnNext);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel9.Location = new System.Drawing.Point(10, 450);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1004, 44);
+            this.panel9.TabIndex = 3;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnPrevious.Location = new System.Drawing.Point(776, 6);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(107, 33);
+            this.btnPrevious.TabIndex = 11;
+            this.btnPrevious.Text = "PREVIOUS";
+            this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnNext.Location = new System.Drawing.Point(889, 6);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(107, 33);
+            this.btnNext.TabIndex = 10;
+            this.btnNext.Text = "NEXT";
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // panel6
             // 
@@ -244,6 +347,34 @@
             this.panel7.Size = new System.Drawing.Size(1024, 57);
             this.panel7.TabIndex = 0;
             // 
+            // btnGo
+            // 
+            this.btnGo.BackColor = System.Drawing.SystemColors.Control;
+            this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnGo.Location = new System.Drawing.Point(494, 14);
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Size = new System.Drawing.Size(43, 29);
+            this.btnGo.TabIndex = 16;
+            this.btnGo.Text = "GO";
+            this.btnGo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGo.UseVisualStyleBackColor = false;
+            this.btnGo.Visible = false;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.CalendarFont = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpDate.CustomFormat = "dd-MM-yyyy";
+            this.dtpDate.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dtpDate.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDate.Location = new System.Drawing.Point(332, 14);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(160, 29);
+            this.dtpDate.TabIndex = 15;
+            this.dtpDate.Visible = false;
+            // 
             // cmbCustomer
             // 
             this.cmbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -251,22 +382,11 @@
             this.cmbCustomer.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cmbCustomer.FormattingEnabled = true;
             this.cmbCustomer.ItemHeight = 21;
-            this.cmbCustomer.Items.AddRange(new object[] {
-            "ID",
-            "ADDED DATE",
-            "NUMBER",
-            "BANK",
-            "BRANCH",
-            "AMOUNT",
-            "CHEQUE DATE",
-            "CUSTOMER",
-            "PAYMENT"});
             this.cmbCustomer.Location = new System.Drawing.Point(332, 14);
             this.cmbCustomer.Name = "cmbCustomer";
-            this.cmbCustomer.Size = new System.Drawing.Size(154, 29);
+            this.cmbCustomer.Size = new System.Drawing.Size(160, 29);
             this.cmbCustomer.TabIndex = 14;
             this.cmbCustomer.Visible = false;
-            this.cmbCustomer.SelectedIndexChanged += new System.EventHandler(this.cmbCustomer_SelectedIndexChanged);
             // 
             // ckAscending
             // 
@@ -407,11 +527,37 @@
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // btnPass
+            // 
+            this.btnPass.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnPass.Location = new System.Drawing.Point(276, 3);
+            this.btnPass.Name = "btnPass";
+            this.btnPass.Size = new System.Drawing.Size(127, 46);
+            this.btnPass.TabIndex = 11;
+            this.btnPass.Text = "PASS";
+            this.btnPass.UseVisualStyleBackColor = false;
+            this.btnPass.Click += new System.EventHandler(this.btnPass_Click);
+            // 
+            // btnReturn
+            // 
+            this.btnReturn.BackColor = System.Drawing.Color.Red;
+            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReturn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReturn.Location = new System.Drawing.Point(409, 3);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(127, 46);
+            this.btnReturn.TabIndex = 10;
+            this.btnReturn.Text = "RETURN";
+            this.btnReturn.UseVisualStyleBackColor = false;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
             // panel5
             // 
             this.panel5.Location = new System.Drawing.Point(542, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(122, 45);
+            this.panel5.Size = new System.Drawing.Size(198, 45);
             this.panel5.TabIndex = 7;
             // 
             // btnCustomer
@@ -419,7 +565,7 @@
             this.btnCustomer.BackColor = System.Drawing.SystemColors.Control;
             this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCustomer.Location = new System.Drawing.Point(670, 3);
+            this.btnCustomer.Location = new System.Drawing.Point(746, 3);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Size = new System.Drawing.Size(127, 46);
             this.btnCustomer.TabIndex = 8;
@@ -431,7 +577,7 @@
             this.btnPayment.BackColor = System.Drawing.SystemColors.Control;
             this.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayment.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnPayment.Location = new System.Drawing.Point(803, 3);
+            this.btnPayment.Location = new System.Drawing.Point(879, 3);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.Size = new System.Drawing.Size(127, 46);
             this.btnPayment.TabIndex = 9;
@@ -458,162 +604,16 @@
             this.panel1.Size = new System.Drawing.Size(1024, 710);
             this.panel1.TabIndex = 1;
             // 
-            // panel9
+            // lblSummary
             // 
-            this.panel9.BackColor = System.Drawing.SystemColors.Control;
-            this.panel9.Controls.Add(this.btnPrevious);
-            this.panel9.Controls.Add(this.btnNext);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel9.Location = new System.Drawing.Point(10, 450);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1004, 44);
-            this.panel9.TabIndex = 3;
-            // 
-            // btnNext
-            // 
-            this.btnNext.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNext.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnNext.Location = new System.Drawing.Point(889, 6);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(107, 33);
-            this.btnNext.TabIndex = 10;
-            this.btnNext.Text = "NEXT";
-            this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnPrevious
-            // 
-            this.btnPrevious.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrevious.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnPrevious.Location = new System.Drawing.Point(776, 6);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(107, 33);
-            this.btnPrevious.TabIndex = 11;
-            this.btnPrevious.Text = "PREVIOUS";
-            this.btnPrevious.UseVisualStyleBackColor = false;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // btnReturn
-            // 
-            this.btnReturn.BackColor = System.Drawing.Color.Red;
-            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReturn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnReturn.Location = new System.Drawing.Point(409, 3);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(127, 46);
-            this.btnReturn.TabIndex = 10;
-            this.btnReturn.Text = "RETURN";
-            this.btnReturn.UseVisualStyleBackColor = false;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
-            // 
-            // dtpDate
-            // 
-            this.dtpDate.CalendarFont = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpDate.CustomFormat = "dd-MM-yyyy";
-            this.dtpDate.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dtpDate.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(332, 14);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(160, 29);
-            this.dtpDate.TabIndex = 15;
-            this.dtpDate.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "CHEQUE ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "ADDED DATE";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "NUMBER";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "BANK";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "BRANCH";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "AMOUNT";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "CHEQUE DATE";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "CUSTOMER";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "DESCRIPTION";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "PAYMENT ID";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "STATUS";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // btnPass
-            // 
-            this.btnPass.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnPass.Location = new System.Drawing.Point(276, 3);
-            this.btnPass.Name = "btnPass";
-            this.btnPass.Size = new System.Drawing.Size(127, 46);
-            this.btnPass.TabIndex = 11;
-            this.btnPass.Text = "PASS";
-            this.btnPass.UseVisualStyleBackColor = false;
-            this.btnPass.Click += new System.EventHandler(this.btnPass_Click);
-            // 
-            // btnGo
-            // 
-            this.btnGo.BackColor = System.Drawing.SystemColors.Control;
-            this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnGo.Location = new System.Drawing.Point(494, 14);
-            this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(43, 29);
-            this.btnGo.TabIndex = 16;
-            this.btnGo.Text = "GO";
-            this.btnGo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGo.UseVisualStyleBackColor = false;
-            this.btnGo.Visible = false;
-            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            this.lblSummary.AutoSize = true;
+            this.lblSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblSummary.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblSummary.Location = new System.Drawing.Point(10, 12);
+            this.lblSummary.Name = "lblSummary";
+            this.lblSummary.Size = new System.Drawing.Size(0, 21);
+            this.lblSummary.TabIndex = 12;
+            this.lblSummary.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ChequeDetailsUC
             // 
@@ -627,13 +627,14 @@
             this.panel4.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCheques)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -684,5 +685,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.Button btnPass;
         private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.Label lblSummary;
     }
 }
