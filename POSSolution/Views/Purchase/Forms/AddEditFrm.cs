@@ -41,7 +41,7 @@ namespace POSSolution.Views.Purchase.Forms
             this.purchase = purchase;
             action = "Edit";
 
-            lblTitle.Text = "EDIT CHEQUE";
+            lblTitle.Text = "EDIT PURCHASE";
             btnSave.BackColor = Color.Gold;
             
 

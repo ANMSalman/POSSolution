@@ -16,7 +16,7 @@ namespace POSSolution.Views.Background
             POSSolution.Controllers.Common.Session.Instance.Id = 100;
 
             InitializeComponent();
-            POSSolution.Views.Purchase.UserControllers.PurchaseDetailsUC uc = new Purchase.UserControllers.PurchaseDetailsUC();
+            POSSolution.Views.Collection.UserControllers.CollectionDetailsUC uc = new Collection.UserControllers.CollectionDetailsUC();
             panel4.Controls.Add(uc);
             uc.Dock = DockStyle.Fill;
 

@@ -1,4 +1,4 @@
-﻿namespace POSSolution.Views.Purchase.Forms
+﻿namespace POSSolution.Views.Collection.Forms
 {
     partial class AddEditFrm
     {
@@ -31,13 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEditFrm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.cmbSupplier = new System.Windows.Forms.ComboBox();
+            this.l6 = new System.Windows.Forms.Label();
+            this.l5 = new System.Windows.Forms.Label();
+            this.l4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtCheque = new System.Windows.Forms.TextBox();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.cmbCustomer = new System.Windows.Forms.ComboBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.l3 = new System.Windows.Forms.Label();
             this.l2 = new System.Windows.Forms.Label();
             this.l1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.txtCash = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -60,39 +69,171 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(520, 268);
+            this.panel1.Size = new System.Drawing.Size(520, 411);
             this.panel1.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
-            this.panel3.Controls.Add(this.cmbSupplier);
+            this.panel3.Controls.Add(this.l6);
+            this.panel3.Controls.Add(this.l5);
+            this.panel3.Controls.Add(this.l4);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.txtTotal);
+            this.panel3.Controls.Add(this.txtCheque);
+            this.panel3.Controls.Add(this.cmbType);
+            this.panel3.Controls.Add(this.cmbCustomer);
             this.panel3.Controls.Add(this.dtpDate);
             this.panel3.Controls.Add(this.l3);
             this.panel3.Controls.Add(this.l2);
             this.panel3.Controls.Add(this.l1);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.txtAmount);
+            this.panel3.Controls.Add(this.txtCash);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 40);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(520, 174);
+            this.panel3.Size = new System.Drawing.Size(520, 317);
             this.panel3.TabIndex = 2;
             // 
-            // cmbSupplier
+            // l6
             // 
-            this.cmbSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbSupplier.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cmbSupplier.FormattingEnabled = true;
-            this.cmbSupplier.ItemHeight = 21;
-            this.cmbSupplier.Location = new System.Drawing.Point(158, 73);
-            this.cmbSupplier.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
-            this.cmbSupplier.Name = "cmbSupplier";
-            this.cmbSupplier.Size = new System.Drawing.Size(343, 29);
-            this.cmbSupplier.TabIndex = 35;
+            this.l6.AutoSize = true;
+            this.l6.BackColor = System.Drawing.Color.Transparent;
+            this.l6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.l6.ForeColor = System.Drawing.Color.Red;
+            this.l6.Location = new System.Drawing.Point(155, 246);
+            this.l6.Name = "l6";
+            this.l6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.l6.Size = new System.Drawing.Size(59, 13);
+            this.l6.TabIndex = 44;
+            this.l6.Text = "*Required";
+            this.l6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.l6.Visible = false;
+            // 
+            // l5
+            // 
+            this.l5.AutoSize = true;
+            this.l5.BackColor = System.Drawing.Color.Transparent;
+            this.l5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.l5.ForeColor = System.Drawing.Color.Red;
+            this.l5.Location = new System.Drawing.Point(155, 198);
+            this.l5.Name = "l5";
+            this.l5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.l5.Size = new System.Drawing.Size(59, 13);
+            this.l5.TabIndex = 43;
+            this.l5.Text = "*Required";
+            this.l5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.l5.Visible = false;
+            // 
+            // l4
+            // 
+            this.l4.AutoSize = true;
+            this.l4.BackColor = System.Drawing.Color.Transparent;
+            this.l4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.l4.ForeColor = System.Drawing.Color.Red;
+            this.l4.Location = new System.Drawing.Point(155, 150);
+            this.l4.Name = "l4";
+            this.l4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.l4.Size = new System.Drawing.Size(59, 13);
+            this.l4.TabIndex = 42;
+            this.l4.Text = "*Required";
+            this.l4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.l4.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label6.Location = new System.Drawing.Point(12, 265);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 21);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "TOTAL";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label5.Location = new System.Drawing.Point(12, 217);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 21);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "CHEQUE";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label1.Location = new System.Drawing.Point(12, 169);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 21);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "CASH";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtTotal.Location = new System.Drawing.Point(158, 262);
+            this.txtTotal.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
+            this.txtTotal.MaxLength = 12;
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(343, 29);
+            this.txtTotal.TabIndex = 38;
+            // 
+            // txtCheque
+            // 
+            this.txtCheque.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtCheque.Location = new System.Drawing.Point(158, 214);
+            this.txtCheque.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
+            this.txtCheque.MaxLength = 12;
+            this.txtCheque.Name = "txtCheque";
+            this.txtCheque.Size = new System.Drawing.Size(343, 29);
+            this.txtCheque.TabIndex = 37;
+            this.txtCheque.TextChanged += new System.EventHandler(this.txtCash_txtCheque_TextChanged);
+            this.txtCheque.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
+            // 
+            // cmbType
+            // 
+            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbType.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.ItemHeight = 21;
+            this.cmbType.Items.AddRange(new object[] {
+            "CASH",
+            "CHEQUE",
+            "CASH AND CHEQUE",
+            "BANK DEPOSIT"});
+            this.cmbType.Location = new System.Drawing.Point(158, 118);
+            this.cmbType.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(343, 29);
+            this.cmbType.TabIndex = 36;
+            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
+            // 
+            // cmbCustomer
+            // 
+            this.cmbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbCustomer.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cmbCustomer.FormattingEnabled = true;
+            this.cmbCustomer.ItemHeight = 21;
+            this.cmbCustomer.Location = new System.Drawing.Point(158, 70);
+            this.cmbCustomer.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
+            this.cmbCustomer.Name = "cmbCustomer";
+            this.cmbCustomer.Size = new System.Drawing.Size(343, 29);
+            this.cmbCustomer.TabIndex = 35;
             // 
             // dtpDate
             // 
@@ -113,7 +254,7 @@
             this.l3.BackColor = System.Drawing.Color.Transparent;
             this.l3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.l3.ForeColor = System.Drawing.Color.Red;
-            this.l3.Location = new System.Drawing.Point(155, 105);
+            this.l3.Location = new System.Drawing.Point(155, 102);
             this.l3.Name = "l3";
             this.l3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.l3.Size = new System.Drawing.Size(59, 13);
@@ -128,7 +269,7 @@
             this.l2.BackColor = System.Drawing.Color.Transparent;
             this.l2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.l2.ForeColor = System.Drawing.Color.Red;
-            this.l2.Location = new System.Drawing.Point(155, 57);
+            this.l2.Location = new System.Drawing.Point(155, 54);
             this.l2.Name = "l2";
             this.l2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.l2.Size = new System.Drawing.Size(59, 13);
@@ -159,21 +300,22 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.label2.Location = new System.Drawing.Point(12, 124);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 21);
+            this.label2.Size = new System.Drawing.Size(44, 21);
             this.label2.TabIndex = 13;
-            this.label2.Text = "AMOUNT";
+            this.label2.Text = "TYPE";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtAmount
+            // txtCash
             // 
-            this.txtAmount.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtAmount.Location = new System.Drawing.Point(158, 121);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
-            this.txtAmount.MaxLength = 12;
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(343, 29);
-            this.txtAmount.TabIndex = 11;
-            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
+            this.txtCash.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtCash.Location = new System.Drawing.Point(158, 166);
+            this.txtCash.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
+            this.txtCash.MaxLength = 12;
+            this.txtCash.Name = "txtCash";
+            this.txtCash.Size = new System.Drawing.Size(343, 29);
+            this.txtCash.TabIndex = 11;
+            this.txtCash.TextChanged += new System.EventHandler(this.txtCash_txtCheque_TextChanged);
+            this.txtCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
             // 
             // label3
             // 
@@ -182,9 +324,9 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.label3.Location = new System.Drawing.Point(12, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 21);
+            this.label3.Size = new System.Drawing.Size(91, 21);
             this.label3.TabIndex = 8;
-            this.label3.Text = "SUPPLIER";
+            this.label3.Text = "CUSTOMER";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -204,7 +346,7 @@
             this.panel4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 214);
+            this.panel4.Location = new System.Drawing.Point(0, 357);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(520, 54);
             this.panel4.TabIndex = 12;
@@ -255,14 +397,14 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(520, 40);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "CREATE NEW PURCHASE";
+            this.lblTitle.Text = "CREATE NEW COLLECTION";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddEditFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 268);
+            this.ClientSize = new System.Drawing.Size(520, 411);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddEditFrm";
@@ -286,7 +428,7 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtAmount;
+        private System.Windows.Forms.TextBox txtCash;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnSave;
@@ -295,6 +437,15 @@
         private System.Windows.Forms.Label l2;
         private System.Windows.Forms.Label l1;
         private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.ComboBox cmbSupplier;
+        private System.Windows.Forms.ComboBox cmbCustomer;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.TextBox txtCheque;
+        private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.Label l6;
+        private System.Windows.Forms.Label l5;
+        private System.Windows.Forms.Label l4;
     }
 }
