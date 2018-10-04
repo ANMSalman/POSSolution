@@ -250,7 +250,7 @@ namespace POSSolution.Controllers.OnlineModels
 
 
         /* Searches records using cheque inputs */
-        public IEnumerable<Cheque> Search(string searchBy, string input,bool returned,bool orderAscending)
+        public IEnumerable<Cheque> Search(int pageIndex,string searchBy, string input,bool returned,bool orderAscending)
         {
             try
             {
@@ -258,33 +258,47 @@ namespace POSSolution.Controllers.OnlineModels
 
                 List<Cheque> cheques = new List<Cheque>();
 
-
-                if (searchBy == "ID")
-                    cheques = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input)).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "ADDED DATE")
-                    cheques = db.Cheques.Where(cheque => cheque.AddedDate.ToString("dd-MM-yyyy") == input).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "NUMBER")
-                    cheques = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input)).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "BANK")
-                    cheques = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input)).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "BRANCH")
-                    cheques = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input)).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "AMOUNT")
-                    cheques = db.Cheques.Where(cheque => cheque.Amount.ToString() == input).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "CHEQUE DATE")
-                    cheques = db.Cheques.Where(cheque => cheque.Date.ToString("dd-MM-yyyy") == input).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "CUSTOMER")
-                    cheques = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input).Include(cheque => cheque.Customer).ToList();
+                if (orderAscending)
+                {
+                    if (searchBy == "ID")
+                        cheques = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input)).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "NUMBER")
+                        cheques = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input)).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "BANK")
+                        cheques = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input)).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "BRANCH")
+                        cheques = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input)).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "AMOUNT")
+                        cheques = db.Cheques.Where(cheque => cheque.Amount.ToString() == input).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CHEQUE DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.Date.ToString("dd-MM-yyyy") == input).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CUSTOMER")
+                        cheques = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else
+                        cheques = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input)).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                }
                 else
-                    cheques = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input)).Include(cheque => cheque.Customer).ToList();
+                {
+                    if (searchBy == "ID")
+                        cheques = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input)).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "NUMBER")
+                        cheques = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input)).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "BANK")
+                        cheques = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input)).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "BRANCH")
+                        cheques = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input)).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "AMOUNT")
+                        cheques = db.Cheques.Where(cheque => cheque.Amount.ToString() == input).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CHEQUE DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.Date.ToString("dd-MM-yyyy") == input).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CUSTOMER")
+                        cheques = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else
+                        cheques = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input)).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                }
 
                 if (cheques != null && cheques.Count > 0)
                 {
-                    if (orderAscending)
-                        cheques = cheques.OrderBy(cheque => cheque.Id).ToList();
-                    else
-                        cheques = cheques.OrderByDescending(cheque => cheque.Id).ToList();
-
                     if (returned)
                         cheques = cheques.Where(cheque => cheque.Status == "RETURNED").ToList();
                 }
@@ -377,8 +391,8 @@ namespace POSSolution.Controllers.OnlineModels
             }
         }
 
-        /* Searches records using cheque inputs */
-        public IEnumerable<Cheque> Search(string searchBy, DateTime input, bool returned, bool orderAscending)
+        /* Searches records using cheque date */
+        public IEnumerable<Cheque> Search(int pageIndex, string searchBy, DateTime input, bool returned, bool orderAscending)
         {
             try
             {
@@ -386,19 +400,23 @@ namespace POSSolution.Controllers.OnlineModels
 
                 List<Cheque> cheques = new List<Cheque>();
 
-
-                if (searchBy == "ADDED DATE")
-                    cheques = db.Cheques.Where(cheque => cheque.AddedDate == input).Include(cheque => cheque.Customer).ToList();
-                else if (searchBy == "CHEQUE DATE")
-                    cheques = db.Cheques.Where(cheque => cheque.Date == input).Include(cheque => cheque.Customer).ToList();
+                if (orderAscending)
+                {
+                    if (searchBy == "ADDED DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.AddedDate == input).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CHEQUE DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.Date == input).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                }
+                else
+                {
+                    if (searchBy == "ADDED DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.AddedDate == input).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CHEQUE DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.Date == input).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                }
 
                 if (cheques != null && cheques.Count > 0)
                 {
-                    if (orderAscending)
-                        cheques = cheques.OrderBy(cheque => cheque.Id).ToList();
-                    else
-                        cheques = cheques.OrderByDescending(cheque => cheque.Id).ToList();
-
                     if (returned)
                         cheques = cheques.Where(cheque => cheque.Status == "RETURNED").ToList();
                 }

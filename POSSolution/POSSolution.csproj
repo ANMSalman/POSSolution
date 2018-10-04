@@ -69,6 +69,7 @@
     <Compile Include="Controllers\OnlineModels\CustomerController.cs" />
     <Compile Include="Controllers\OnlineModels\ExpenseController.cs" />
     <Compile Include="Controllers\OnlineModels\ItemController.cs" />
+    <Compile Include="Controllers\OnlineModels\PurchaseController.cs" />
     <Compile Include="Controllers\OnlineModels\StaffController.cs" />
     <Compile Include="Controllers\OnlineModels\SupplierController.cs" />
     <Compile Include="Controllers\OnlineModels\UserController.cs" />
@@ -221,6 +222,18 @@
     <Compile Include="Views\MessageBoxes\ShowMessage.Designer.cs">
       <DependentUpon>ShowMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Purchase\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Purchase\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\UserControllers\PurchaseDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Purchase\UserControllers\PurchaseDetailsUC.Designer.cs">
+      <DependentUpon>PurchaseDetailsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Staff\Forms\AddEditFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,6 +311,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MessageBoxes\ShowMessage.resx">
       <DependentUpon>ShowMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Purchase\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Purchase\UserControllers\PurchaseDetailsUC.resx">
+      <DependentUpon>PurchaseDetailsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\Forms\AddEditFrm.resx">
       <DependentUpon>AddEditFrm.cs</DependentUpon>

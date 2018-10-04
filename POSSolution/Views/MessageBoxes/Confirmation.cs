@@ -21,6 +21,8 @@ namespace POSSolution.Views.MessageBoxes
                 lblMessage.Text = "Mark selected cheque as Returned?";
             else if (action == "MarkPassed")
                 lblMessage.Text = "Mark selected cheque as Passed?";
+            else if (action == "Delete")
+                lblMessage.Text = "Delete selected record?";
 
         }
 
