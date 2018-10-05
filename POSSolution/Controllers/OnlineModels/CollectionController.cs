@@ -82,8 +82,11 @@ namespace POSSolution.Controllers.OnlineModels
                 db.Collections.Remove(collection);
                 db.SaveChanges();
 
-                /*if(collection.ReturnBillId !="")
-                    db.ReturnBills.Remove()*/
+                if (collection.ReturnBillId != null)
+                {
+                    db.ReturnBills.Remove(db.ReturnBills.Find(collection.ReturnBillId));
+                    db.SaveChanges();
+                }
 
                 db.Dispose();
 

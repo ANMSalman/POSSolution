@@ -72,6 +72,8 @@ namespace POSSolution.Controllers.OnlineModels
             }
         }
 
+        
+
         /* Updates a record with new data */
         public Boolean Returned(int id)
         {
@@ -117,6 +119,14 @@ namespace POSSolution.Controllers.OnlineModels
                 return false;
             }
         }
+
+        
+
+
+
+
+
+
 
         /*Gets count of the records for the search with text*/
         public int GetCount(string searchBy, string input, bool returned)
@@ -603,5 +613,242 @@ namespace POSSolution.Controllers.OnlineModels
                 return null;
             }
         }
+
+
+
+        /*following code is used to search cheques at payments*/
+
+        /*Gets count of the records for the search with text*/
+        public int GetCount(string searchBy, string input)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                int count = 0;
+
+
+                if (searchBy == "ID")
+                    count = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input) && cheque.PaymentId == null).Count();
+                else if (searchBy == "NUMBER")
+                    count = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input) && cheque.PaymentId == null).Count();
+                else if (searchBy == "BANK")
+                    count = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input) && cheque.PaymentId == null).Count();
+                else if (searchBy == "BRANCH")
+                    count = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input) && cheque.PaymentId == null).Count();
+                else if (searchBy == "AMOUNT")
+                    count = db.Cheques.Where(cheque => cheque.Amount.ToString() == input && cheque.PaymentId == null).Count();
+                else if (searchBy == "CUSTOMER")
+                    count = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input && cheque.PaymentId == null).Count();
+                else
+                    count = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input) && cheque.PaymentId == null).Count();
+
+                db.Dispose();
+
+                return count;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return 0;
+            }
+        }
+
+        /*Gets Sum of the Amount of records for the search with text*/
+        public double GetSum(string searchBy, string input)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                double sum = 0;
+
+                if (searchBy == "ID")
+                    sum = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input) && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+                else if (searchBy == "NUMBER")
+                    sum = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input) && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+                else if (searchBy == "BANK")
+                    sum = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input) && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+                else if (searchBy == "BRANCH")
+                    sum = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input) && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+                else if (searchBy == "AMOUNT")
+                    sum = db.Cheques.Where(cheque => cheque.Amount.ToString() == input && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+                else if (searchBy == "CUSTOMER")
+                    sum = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+                else
+                    sum = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input) && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+
+
+                db.Dispose();
+
+                return sum;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return 0;
+            }
+        }
+
+
+        /* Searches records using cheque inputs */
+        public IEnumerable<Cheque> Search(int pageIndex, string searchBy, string input, bool orderAscending)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                List<Cheque> cheques = new List<Cheque>();
+
+                if (orderAscending)
+                {
+                    if (searchBy == "ID")
+                        cheques = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input) && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "NUMBER")
+                        cheques = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input) && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "BANK")
+                        cheques = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input) && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "BRANCH")
+                        cheques = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input) && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "AMOUNT")
+                        cheques = db.Cheques.Where(cheque => cheque.Amount.ToString() == input && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CUSTOMER")
+                        cheques = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else
+                        cheques = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input) && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                }
+                else
+                {
+                    if (searchBy == "ID")
+                        cheques = db.Cheques.Where(cheque => cheque.Id.ToString().StartsWith(input) && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "NUMBER")
+                        cheques = db.Cheques.Where(cheque => cheque.Number.ToString().StartsWith(input) && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "BANK")
+                        cheques = db.Cheques.Where(cheque => cheque.Bank.StartsWith(input) && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "BRANCH")
+                        cheques = db.Cheques.Where(cheque => cheque.Branch.StartsWith(input) && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "AMOUNT")
+                        cheques = db.Cheques.Where(cheque => cheque.Amount.ToString() == input && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CUSTOMER")
+                        cheques = db.Cheques.Where(cheque => cheque.CustomerId.ToString() == input && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else
+                        cheques = db.Cheques.Where(cheque => cheque.PaymentId.ToString().StartsWith(input) && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                }
+                
+                db.Dispose();
+
+                return cheques;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return null;
+            }
+        }
+
+
+
+
+        /*Gets count of the records for the search with dates*/
+        public int GetCount(string searchBy, DateTime input)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                int count = 0;
+
+
+                if (searchBy == "ADDED DATE")
+                    count = db.Cheques.Where(cheque => cheque.AddedDate == input && cheque.PaymentId == null).Count();
+                else if (searchBy == "CHEQUE DATE")
+                    count = db.Cheques.Where(cheque => cheque.Date == input && cheque.PaymentId == null).Count();
+
+
+                db.Dispose();
+
+                return count;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return 0;
+            }
+        }
+
+        /*Gets sum of the Amount of records for the search with dates*/
+        public double GetSum(string searchBy, DateTime input)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                double sum = 0;
+
+                
+                    if (searchBy == "ADDED DATE")
+                        sum = db.Cheques.Where(cheque => cheque.AddedDate == input && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+                    else if (searchBy == "CHEQUE DATE")
+                        sum = db.Cheques.Where(cheque => cheque.Date == input && cheque.PaymentId == null).Sum(cheque => cheque.Amount);
+                
+
+                db.Dispose();
+
+                return sum;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return 0;
+            }
+        }
+
+        /* Searches records using cheque date */
+        public IEnumerable<Cheque> Search(int pageIndex, string searchBy, DateTime input, bool orderAscending)
+        {
+            try
+            {
+                db = new OnlineDatabaseEntities();
+
+                List<Cheque> cheques = new List<Cheque>();
+
+                if (orderAscending)
+                {
+                    if (searchBy == "ADDED DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.AddedDate == input && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CHEQUE DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.Date == input && cheque.PaymentId == null).OrderBy(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                }
+                else
+                {
+                    if (searchBy == "ADDED DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.AddedDate == input && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                    else if (searchBy == "CHEQUE DATE")
+                        cheques = db.Cheques.Where(cheque => cheque.Date == input && cheque.PaymentId == null).OrderByDescending(cheque => cheque.Id).Skip(pageIndex * 50).Take(50).Include(cheque => cheque.Customer).ToList();
+                }
+                
+                db.Dispose();
+
+                return cheques;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                db.Dispose();
+
+                return null;
+            }
+        }
+
     }
 }

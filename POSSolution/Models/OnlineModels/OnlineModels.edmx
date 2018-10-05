@@ -72,7 +72,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Type" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="Cash" Type="float" Nullable="false" />
           <Property Name="Cheque" Type="float" Nullable="false" />
           <Property Name="Total" Type="float" Nullable="false" />
@@ -171,7 +171,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Type" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="Cash" Type="float" Nullable="false" />
           <Property Name="Cheque" Type="float" Nullable="false" />
           <Property Name="Total" Type="float" Nullable="false" />
@@ -957,7 +957,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Type" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cash" Type="Double" Nullable="false" />
           <Property Name="Cheque" Type="Double" Nullable="false" />
           <Property Name="Total" Type="Double" Nullable="false" />
@@ -1076,7 +1076,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SupplierId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Type" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cash" Type="Double" Nullable="false" />
           <Property Name="Cheque" Type="Double" Nullable="false" />
           <Property Name="Total" Type="Double" Nullable="false" />

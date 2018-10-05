@@ -136,7 +136,7 @@ namespace POSSolution.Controllers.OnlineModels
 
                 if (searchBy == "ID")
                     sum = db.Purchases.Where(purchase => purchase.Id.ToString().StartsWith(input)).Sum(purchase => purchase.Amount);
-                if (searchBy == "AMOUNT")
+                else if (searchBy == "AMOUNT")
                     sum = db.Purchases.Where(purchase => purchase.Amount.ToString() == input).Sum(purchase => purchase.Amount);
                 else
                     sum = db.Purchases.Where(purchase => purchase.Supplier.Id.ToString().StartsWith(input)).Sum(purchase => purchase.Amount);

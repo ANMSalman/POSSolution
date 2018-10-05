@@ -143,7 +143,7 @@ namespace POSSolution.Views.Collection.Forms
                 {
                     if (control.Add(collection))
                     {
-                        new ShowMessage("Success", "SUCCESS", "Record created successfully.\nPURCHASE ID: " + collection.Id).ShowDialog();
+                        new ShowMessage("Success", "SUCCESS", "Record created successfully.\nCOLLECTION ID: " + collection.Id).ShowDialog();
 
                         this.DialogResult = DialogResult.Cancel;
                     }
@@ -192,11 +192,13 @@ namespace POSSolution.Views.Collection.Forms
             {
                 txtCash.Enabled = true;
                 txtCheque.Enabled = false;
+                txtCheque.Text = "";
             }
             else if (cmbType.SelectedItem.ToString() == "CHEQUE")
             {
                 txtCash.Enabled = false;
                 txtCheque.Enabled = true;
+                txtCash.Text = "";
             }
             else
             {
@@ -210,10 +212,7 @@ namespace POSSolution.Views.Collection.Forms
             l4.Visible = false;
             l5.Visible = false;
             l6.Visible = false;
-
-            txtCash.Text = "";
-            txtCheque.Text = "";
-            txtTotal.Text = "";
+            
         }
 
         private void txtCash_txtCheque_TextChanged(object sender, EventArgs e)

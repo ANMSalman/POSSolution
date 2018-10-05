@@ -70,6 +70,7 @@
     <Compile Include="Controllers\OnlineModels\CustomerController.cs" />
     <Compile Include="Controllers\OnlineModels\ExpenseController.cs" />
     <Compile Include="Controllers\OnlineModels\ItemController.cs" />
+    <Compile Include="Controllers\OnlineModels\PaymentController.cs" />
     <Compile Include="Controllers\OnlineModels\PurchaseController.cs" />
     <Compile Include="Controllers\OnlineModels\StaffController.cs" />
     <Compile Include="Controllers\OnlineModels\SupplierController.cs" />
@@ -235,6 +236,24 @@
     <Compile Include="Views\MessageBoxes\ShowMessage.Designer.cs">
       <DependentUpon>ShowMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Payment\Forms\AddCheques.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Payment\Forms\AddCheques.Designer.cs">
+      <DependentUpon>AddCheques.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payment\Forms\AddEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Payment\Forms\AddEditFrm.Designer.cs">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payment\UserControllers\PaymentDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Payment\UserControllers\PaymentDetailsUC.Designer.cs">
+      <DependentUpon>PaymentDetailsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Purchase\Forms\AddEditFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +349,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MessageBoxes\ShowMessage.resx">
       <DependentUpon>ShowMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Payment\Forms\AddCheques.resx">
+      <DependentUpon>AddCheques.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Payment\Forms\AddEditFrm.resx">
+      <DependentUpon>AddEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Payment\UserControllers\PaymentDetailsUC.resx">
+      <DependentUpon>PaymentDetailsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Purchase\Forms\AddEditFrm.resx">
       <DependentUpon>AddEditFrm.cs</DependentUpon>

@@ -6,32 +6,32 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using POSSolution.Views.Collection.Forms;
+using POSSolution.Views.Payment.Forms;
 using POSSolution.Views.MessageBoxes;
 using POSSolution.Controllers.OnlineModels;
 
-namespace POSSolution.Views.Collection.UserControllers
+namespace POSSolution.Views.Payment.UserControllers
 {
-    public partial class CollectionDetailsUC : UserControl
+    public partial class PaymentDetailsUC : UserControl
     {
-        CollectionController control = new CollectionController();
+        PaymentController control = new PaymentController();
 
         private int page = 0, maxPages;
 
-        public CollectionDetailsUC()
+        public PaymentDetailsUC()
         {
             InitializeComponent();
             cmbSearchBy.SelectedIndex = 0;
 
-            IEnumerable<POSSolution.Models.OnlineModels.Customer> customers = control.GetCustomers();
-            foreach (POSSolution.Models.OnlineModels.Customer customer in customers)
+            IEnumerable<POSSolution.Models.OnlineModels.Supplier> suppliers = control.GetSuppliers();
+            foreach (POSSolution.Models.OnlineModels.Supplier supplier in suppliers)
             {
-                cmbCustomer.Items.Add(customer.Id + " : " + customer.Name + " : " + customer.Address);
+                cmbSupplier.Items.Add(supplier.Id + " : " + supplier.Name + " : " + supplier.Address);
             }
 
-            cmbCustomer.SelectedIndex = 0;
+            cmbSupplier.SelectedIndex = 0;
             cmbType.SelectedIndex = 0;
-            dgvCollections.Rows.Clear();
+            dgvPayments.Rows.Clear();
             lblSummary.Text = "";
         }
 
@@ -53,8 +53,8 @@ namespace POSSolution.Views.Collection.UserControllers
             {
                 string searchText = "";
 
-                if (cmbSearchBy.SelectedItem.ToString() == "CUSTOMER")
-                    searchText = cmbCustomer.SelectedItem.ToString().Split(' ').First();
+                if (cmbSearchBy.SelectedItem.ToString() == "SUPPLIER")
+                    searchText = cmbSupplier.SelectedItem.ToString().Split(' ').First();
                 else
                     searchText = txtSearch.Text;
 
@@ -79,43 +79,43 @@ namespace POSSolution.Views.Collection.UserControllers
 
         private void Search()
         {
-            dgvCollections.Rows.Clear();
+            dgvPayments.Rows.Clear();
 
             PaginateSearch();
 
-            IEnumerable<Models.OnlineModels.Collection> collections;
+            IEnumerable<Models.OnlineModels.Payment> payments;
 
             if (cmbSearchBy.SelectedItem.ToString() == "ADDED DATE")
             {
-                collections = control.Search(page,dtpDate.Value.Date);
+                payments = control.Search(page,dtpDate.Value.Date);
             }
             else
             {
                 string searchText = "";
 
-                if (cmbSearchBy.SelectedItem.ToString() == "CUSTOMER")
-                    searchText = cmbCustomer.SelectedItem.ToString().Split(' ').First();
+                if (cmbSearchBy.SelectedItem.ToString() == "SUPPLIER")
+                    searchText = cmbSupplier.SelectedItem.ToString().Split(' ').First();
                 else
                     searchText = txtSearch.Text;
 
-                collections = control.Search(page,cmbSearchBy.SelectedItem.ToString(),
+                payments = control.Search(page,cmbSearchBy.SelectedItem.ToString(),
                     searchText,
                     ckAscending.Checked,
                     cmbType.SelectedItem.ToString());
             }
 
-            if (collections != null)
+            if (payments != null)
             {
-                foreach (Models.OnlineModels.Collection collection in collections)
+                foreach (Models.OnlineModels.Payment payment in payments)
                 {
-                    dgvCollections.Rows.Add(collection.Id,
-                        collection.Date.ToString("yyyy-MM-dd"),
-                        collection.Customer.Id + " : " + collection.Customer.Name + " : " + collection.Customer.Address,
-                        collection.Type,
-                        collection.Cash.ToString("N2"),
-                        collection.Cheque.ToString("N2"),
-                        collection.Total.ToString("N2"),
-                        collection.ReturnBillId);
+                    dgvPayments.Rows.Add(payment.Id,
+                        payment.Date.ToString("yyyy-MM-dd"),
+                        payment.Supplier.Id + " : " + payment.Supplier.Name + " : " + payment.Supplier.Address,
+                        payment.Type,
+                        payment.Cash.ToString("N2"),
+                        payment.Cheque.ToString("N2"),
+                        payment.Total.ToString("N2"),
+                        payment.ReturnBillId);
                 }
             }
         }
@@ -138,22 +138,26 @@ namespace POSSolution.Views.Collection.UserControllers
 
         private void EditRecord()
         {
-            if (dgvCollections.SelectedRows.Count > 0)
+            if (dgvPayments.SelectedRows.Count > 0)
             {
-                if (dgvCollections.SelectedRows[0].Cells[0].Value != null)
+                if (dgvPayments.SelectedRows[0].Cells[0].Value != null)
                 {
-                    if (dgvCollections.SelectedRows[0].Cells[7].Value == null)
+                    if (dgvPayments.SelectedRows[0].Cells[7].Value == null && dgvPayments.SelectedRows[0].Cells[8].Value == null)
                     {
-                        Models.OnlineModels.Collection collection = control.Find(int.Parse(dgvCollections.SelectedRows[0].Cells[0].Value.ToString()));
+                        Models.OnlineModels.Payment payment = control.Find(int.Parse(dgvPayments.SelectedRows[0].Cells[0].Value.ToString()));
 
-                        AddEditFrm frm = new AddEditFrm(collection);
+                        AddEditFrm frm = new AddEditFrm(payment);
                         frm.ShowDialog();
 
                         RefreshDGV();
                     }
+                    else if (dgvPayments.SelectedRows[0].Cells[7].Value != null)
+                    {
+                        /*Go to Edit Return bill*/
+                    }
                     else
                     {
-                        /*Open Edit Return Bill*/
+                        /*go to edit Edit Payment Bill*/
                     }
                 }
             }
@@ -163,16 +167,16 @@ namespace POSSolution.Views.Collection.UserControllers
 
         private void DeleteRecord()
         {
-            if (dgvCollections.SelectedRows.Count > 0)
+            if (dgvPayments.SelectedRows.Count > 0)
             {
-                if (dgvCollections.SelectedRows[0].Cells[0].Value != null)
+                if (dgvPayments.SelectedRows[0].Cells[0].Value != null)
                 {
 
                     DialogResult action = new Confirmation("Delete").ShowDialog();
 
                     if (action == DialogResult.Yes)
                     {
-                        bool result = control.Delete(int.Parse(dgvCollections.SelectedRows[0].Cells[0].Value.ToString()));
+                        bool result = control.Delete(int.Parse(dgvPayments.SelectedRows[0].Cells[0].Value.ToString()));
 
                         if (result)
                         {
@@ -194,11 +198,11 @@ namespace POSSolution.Views.Collection.UserControllers
         {
             txtSearch.Text = "";
             page = 0;
-            if(cmbSearchBy.SelectedItem.ToString()== "CUSTOMER")
+            if(cmbSearchBy.SelectedItem.ToString()== "SUPPLIER")
             {
                 txtSearch.Visible = false;
                 dtpDate.Visible = false;
-                cmbCustomer.Visible = true;
+                cmbSupplier.Visible = true;
                 btnGo.Visible = true;
                 ckAscending.Enabled = true;
             }
@@ -206,7 +210,7 @@ namespace POSSolution.Views.Collection.UserControllers
             {
                 txtSearch.Visible = false;
                 dtpDate.Visible = true;
-                cmbCustomer.Visible = false;
+                cmbSupplier.Visible = false;
                 btnGo.Visible = true;
                 ckAscending.Enabled = false;
             }
@@ -214,12 +218,12 @@ namespace POSSolution.Views.Collection.UserControllers
             {
                 txtSearch.Visible = true;
                 dtpDate.Visible = false;
-                cmbCustomer.Visible = false;
+                cmbSupplier.Visible = false;
                 btnGo.Visible = false;
                 ckAscending.Enabled = true;
             }
 
-            dgvCollections.Rows.Clear();
+            dgvPayments.Rows.Clear();
             lblSummary.Text = "";
         }
 
@@ -243,12 +247,14 @@ namespace POSSolution.Views.Collection.UserControllers
             if (txtSearch.Text != "")
                 Search();
             else
-                dgvCollections.Rows.Clear();
+                dgvPayments.Rows.Clear();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            panel1.Enabled = false;
             NewRecord();
+            panel1.Enabled = true;
         }
 
         
